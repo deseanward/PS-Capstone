@@ -1,5 +1,17 @@
-.App {
-  text-align: center;
+@tailwind base; 
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+
+    
+  }
 }
 
-
+.app {
+  @apply
+  h-screen
+  flex flex-col items-center
+   bg-red-900
+}

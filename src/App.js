@@ -12,7 +12,7 @@ function App() {
   const [user, setUser] = useState(getUser());
 
   return (
-    <div className='App'>
+    <div className='app'>
       {user ? (
         <>
           <Navbar user={user} setUser={setUser} />
