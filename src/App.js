@@ -7,6 +7,7 @@ import NewOrderPage from "./pages/New-Order/new-order.page";
 import AuthPage from "./pages/Auth/auth.page";
 import OrderHistoryPage from "./pages/Order-History/order-history.page";
 import Navbar from "./components/navbar/navbar.component";
+import DefaultLayout from "./layout";
 
 function App() {
   const [user, setUser] = useState(getUser());
@@ -16,11 +17,12 @@ function App() {
       {user ? (
         <>
           <Navbar user={user} setUser={setUser} />
-          <Routes>
-            <Route path='/orders' element={<OrderHistoryPage />}></Route>
-            <Route path='/orders/new' element={<NewOrderPage />}></Route>
-            <Route></Route>
-          </Routes>
+          <DefaultLayout>
+            <Routes>
+              <Route path='/orders' element={<OrderHistoryPage />}></Route>
+              <Route path='/orders/new' element={<NewOrderPage />}></Route>
+            </Routes>
+          </DefaultLayout>
         </>
       ) : (
         <AuthPage setUser={setUser} />

@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { signUp } from "../../utils/users/users-service";
+import Form from "../../ui/form/form.ui";
+import Input from "../../ui/input/input.ui";
+import Button from "../../ui/button/button.ui";
 
 const SignUpForm = ({ setUser }) => {
   const defaultFormFields = {
@@ -45,48 +48,56 @@ const SignUpForm = ({ setUser }) => {
   };
 
   return (
-    <div className='form-container'>
-      <form autoComplete='off' onSubmit={handleSubmit}>
-        <label>Name</label>
-        <input
-          type='text'
-          name='name'
-          value={formData.name}
-          onChange={handleChange}
-          required
-        />
+    <div onSubmit={handleSubmit}>
+      <Form autoComplete='off'>
+        <section className='w-full'>
+          <label>Name</label>
+          <Input
+            type='text'
+            name='name'
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+        </section>
 
-        <label>Email</label>
-        <input
-          type='email'
-          name='email'
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
+        <section className='w-full'>
+          <label>Email</label>
+          <Input
+            type='email'
+            name='email'
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+        </section>
 
-        <label>Password</label>
-        <input
-          type='password'
-          name='password'
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
+        <section className='w-full'>
+          <label>Password</label>
+          <Input
+            type='password'
+            name='password'
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+        </section>
 
-        <label>Confirm Password</label>
-        <input
-          type='password'
-          name='confirm'
-          value={formData.confirm}
-          onChange={handleChange}
-          required
-        />
+        <section className='w-full'>
+          <label>Confirm Password</label>
+          <Input
+            type='password'
+            name='confirm'
+            value={formData.confirm}
+            onChange={handleChange}
+            required
+          />
+        </section>
 
-        <button type='submit' disabled={isDisabled}>
+        <Button type='submit' disabled={isDisabled}>
           Sign Up
-        </button>
-      </form>
+        </Button>
+      </Form>
       <p className='error_message'>{formData.error}</p>
     </div>
   );

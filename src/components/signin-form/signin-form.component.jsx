@@ -1,5 +1,8 @@
 import { useState } from "react";
 import * as usersService from "../../utils/users/users-service";
+import Input from "../../ui/input/input.ui";
+import Button from "../../ui/button/button.ui";
+import Form from "../../ui/form/form.ui";
 
 export default function LoginForm({ setUser }) {
   const [credentials, setCredentials] = useState({
@@ -28,29 +31,31 @@ export default function LoginForm({ setUser }) {
   }
 
   return (
-    <div>
-      <div className='form-container' onSubmit={handleSubmit}>
-        <form autoComplete='off'>
+    <div onSubmit={handleSubmit} className="flex flex-col items-center">
+      <Form autoComplete='off'>
+        <section className='w-full'>
           <label>Email</label>
-          <input
+          <Input
             type='text'
             name='email'
             value={credentials.email}
             onChange={handleChange}
             required
           />
+        </section>
+        <section className='w-full'>
           <label>Password</label>
-          <input
+          <Input
             type='password'
             name='password'
             value={credentials.password}
             onChange={handleChange}
             required
           />
-          <button type='submit'>LOG IN</button>
-        </form>
-      </div>
-      <p className='error-message'>&nbsp;{error}</p>
+        </section>
+        <Button type='submit'>LOG IN</Button>
+      </Form>
+      <p className='error-message text-red-500 font-bold'>&nbsp;{error}</p>
     </div>
   );
 }
