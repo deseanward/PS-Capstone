@@ -4,16 +4,21 @@ import {
   UserHomeContainer,
   UserHomeMainSection,
 } from "./user-home.styles";
-import PostInput from "../../components/post-input/post-input.component";
 
-const UserHomePage = ({ user }) => {
+import PostInput from "../../components/post-input/post-input.component";
+import PostDisplay from "../../components/post-display/post-display.component";
+import MiniProfile from "../../components/mini-profile/mini-profile.component";
+
+const UserHomePage = () => {
+  // const [post, setPost] = useState([]);
   return (
     <UserHomeContainer>
-      <UserHomeAsideSection className='left'>Left</UserHomeAsideSection>
+      <UserHomeAsideSection className='left'>
+        <MiniProfile />
+      </UserHomeAsideSection>
       <UserHomeMainSection className='center'>
-        <PostInput>
-          
-        </PostInput>
+        <PostInput />
+        <PostDisplay />
       </UserHomeMainSection>
       <UserHomeAsideSection className='right'>Right</UserHomeAsideSection>
     </UserHomeContainer>

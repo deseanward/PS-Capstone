@@ -1,10 +1,10 @@
 import tw, { styled } from "twin.macro";
 
-export const PostInputContainer = styled.div`
+export const PostInputContainer = styled.form`
   ${tw`
         w-full
         h-[200px]
-        border-2 
+        rounded-lg 
         bg-white
         px-4
         `}

@@ -4,6 +4,7 @@
 
 @layer base {
   body {
+    
     h1, h2, h3, h4, h5, h6 {
       @apply font-bold
     }
@@ -31,5 +32,6 @@
 .app {
   @apply
   h-screen
-  flex flex-col items-center
+  flex flex-col items-center gap-8
+  bg-[#323232]
 }

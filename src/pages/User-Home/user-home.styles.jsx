@@ -7,21 +7,23 @@ export const UserHomeContainer = styled.div`
 
   display: grid;
   grid-template-columns: 2fr 4fr 2fr;
-  gap: 1em;
+  gap: 2em;
 `;
 
 export const UserHomeMainSection = styled.main`
   ${tw`
-        border-2
         w-full
         h-screen
+        flex flex-col gap-8
     `}
 `;
 
 export const UserHomeAsideSection = styled.aside`
   ${tw`
-        border-2
         w-full
         h-screen
+        bg-white
+        rounded-lg
+        p-4
     `}
 `;

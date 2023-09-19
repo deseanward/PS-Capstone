@@ -3,7 +3,7 @@ import tw, { styled } from "twin.macro";
 
 export const NavbarContainer = styled.nav`
   ${tw`
-   
+   bg-white
   `}
 `;
 

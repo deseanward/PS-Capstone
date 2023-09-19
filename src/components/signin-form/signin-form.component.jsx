@@ -1,5 +1,6 @@
 import { useState } from "react";
 import * as usersService from "../../utils/users/users-service";
+
 import Input from "../../ui/input/input.ui";
 import Button from "../../ui/button/button.ui";
 import Form from "../../ui/form/form.ui";
@@ -25,13 +26,14 @@ export default function LoginForm({ setUser }) {
       // payload of the JSON Web Token (JWT)
       const user = await usersService.logIn(credentials);
       setUser(user);
-    } catch {
+    } catch (err) {
       setError("Log In Failed - Try Again");
+      console.log(err);
     }
   }
 
   return (
-    <div onSubmit={handleSubmit} className="flex flex-col items-center">
+    <div onSubmit={handleSubmit} className='flex flex-col items-center'>
       <Form autoComplete='off'>
         <section className='w-full'>
           <label>Email</label>

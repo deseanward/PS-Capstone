@@ -30,7 +30,7 @@ async function logIn(req, res) {
     const token = createJWT(user);
     res.json(token);
   } catch (error) {
-    console.log(error);
+    console.log("Error when loggin in", error);
     res.status(400).json(error);
   }
 }

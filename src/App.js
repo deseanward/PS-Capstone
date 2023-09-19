@@ -1,7 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { getUser } from "./utils/users/users-service";
-
 
 import "./App.css";
 import NewOrderPage from "./pages/New-Order/new-order.page";
@@ -18,16 +17,12 @@ function App() {
     <div className='app'>
       {user ? (
         <>
-          <Navbar user={user} setUser={setUser} />
+          <Navbar setUser={setUser} />
           <DefaultLayout>
             <Routes>
-            <Route
-                path='/'
-                element={<UserHomePage user={user} />}
-              ></Route>
+              <Route path='/' element={<UserHomePage />}></Route>
               <Route path='/orders' element={<OrderHistoryPage />}></Route>
               <Route path='/orders/new' element={<NewOrderPage />}></Route>
-              
             </Routes>
           </DefaultLayout>
         </>

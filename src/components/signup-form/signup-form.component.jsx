@@ -28,8 +28,6 @@ const SignUpForm = ({ setUser }) => {
     e.preventDefault();
 
     try {
-      console.log(formData);
-
       // Make a copy of the form data
       const userFormData = { ...formData };
 
@@ -39,7 +37,6 @@ const SignUpForm = ({ setUser }) => {
 
       // Calling user service sign up function
       const user = await signUp(userFormData);
-      console.log("USER: ", user);
       setUser(user);
     } catch (error) {
       console.log(error);
@@ -60,7 +57,6 @@ const SignUpForm = ({ setUser }) => {
             required
           />
         </section>
-
         <section className='w-full'>
           <label>Email</label>
           <Input
@@ -71,7 +67,6 @@ const SignUpForm = ({ setUser }) => {
             required
           />
         </section>
-
         <section className='w-full'>
           <label>Password</label>
           <Input
@@ -82,7 +77,6 @@ const SignUpForm = ({ setUser }) => {
             required
           />
         </section>
-
         <section className='w-full'>
           <label>Confirm Password</label>
           <Input
@@ -93,7 +87,6 @@ const SignUpForm = ({ setUser }) => {
             required
           />
         </section>
-
         <Button type='submit' disabled={isDisabled}>
           Sign Up
         </Button>
