@@ -1,6 +1,7 @@
 const User = require("../../models/user");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const { getUser } = require("../../src/utils/users/users-service");
 
 // Create new user
 async function create(req, res) {
@@ -34,6 +35,12 @@ async function logIn(req, res) {
   }
 }
 
+//* ----- Show User's Home Page ----- *//
+async function showUserHome(req, res) {
+  const currentUser = getUser();
+  res.status(200).send(`/user/${currentUser._id}`);
+}
+
 // Helper function to create a JWT token
 function createJWT(user) {
   return jwt.sign({ user }, process.env.SECRET, { expiresIn: "24h" });
@@ -49,6 +56,7 @@ async function checkToken(req, res) {
 module.exports = {
   create,
   logIn,
+  showUserHome,
   createJWT,
   checkToken,
 };

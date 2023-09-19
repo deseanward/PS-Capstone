@@ -97,6 +97,7 @@ const SignUpForm = ({ setUser }) => {
         <Button type='submit' disabled={isDisabled}>
           Sign Up
         </Button>
+        !
       </Form>
       <p className='error_message'>{formData.error}</p>
     </div>
