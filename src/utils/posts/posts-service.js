@@ -8,6 +8,7 @@ export async function createPost(postData) {
   return post;
 }
 
+// Get all posts
 export async function getPosts() {
   const posts = await postsApi.getPosts();
 
@@ -15,15 +16,15 @@ export async function getPosts() {
   return posts;
 }
 
+// Get individual post
 export async function getPost(id) {
-  console.log("INSIDE POST SERVICE: ");
   const post = await postsApi.getPost(id);
-  console.log("INSIDE POST SERVICE W/ POST ", post);
   return post;
 }
 
-// export async function editPost(id) {
-//   const post = await postsApi.editPost(id)
+// Update a post
+export async function updatePost(postData) {
+  const post = await postsApi.updatePost(postData)
 
-//   return post;
-// }
+  return post;
+}

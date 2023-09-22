@@ -6,11 +6,18 @@ export const postsSlice = createSlice({
 
   reducers: {
     setPosts: (state, action) => {
-      console.log("PAYLOAD: ", action.payload);
       state.unshift(action.payload);
+    },
+
+    updatePost: (state, action) => {
+      const existingPost = state.find(
+        (post) => post._id === action.payload._id
+      );
+
+      console.log("Existing: ", existingPost);
     },
   },
 });
 
-export const { setPosts, getPosts } = postsSlice.actions;
+export const { setPosts, getPosts, updatePost } = postsSlice.actions;
 export default postsSlice.reducer;

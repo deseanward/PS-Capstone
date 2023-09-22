@@ -1,65 +1,134 @@
-import { useState } from "react";
-import * as usersService from "../../utils/users/users-service";
+import React, { useEffect, useState } from "react";
 
-import Input from "../../ui/input/input.ui";
-import Button from "../../ui/button/button.ui";
-import Form from "../../ui/form/form.ui";
+import { useDispatch, useSelector } from "react-redux";
+
+import { getUser } from "../../utils/users/users-service";
+import * as postsService from "../../utils/posts/posts-service";
+
+import { updatePost } from "../../app/features/post/postSlice";
+
+import {
+  InputSection,
+  PostSection,
+  PostInputContainer,
+} from "./post-edit.styles";
+
+import Avatar from "../../ui/avatar/avatar.ui";
 import Textarea from "../../ui/textarea/textarea.ui";
+import UploadIcon from "../../ui/upload-icon/upload-icon.ui";
+import { BsFillImageFill } from "react-icons/bs";
+import { SiAudiomack } from "react-icons/si";
+import { CgAttachment } from "react-icons/cg";
+import { GoVideo } from "react-icons/go";
+import Button from "../../ui/button/button.ui";
+import { useNavigate, useParams } from "react-router-dom";
 
-export default function PostEditForm() {
-  const [credentials, setCredentials] = useState({
-    email: "",
-    password: "",
-  });
-  const [error, setError] = useState("");
+const PostInput = () => {
+  const user = getUser();
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  const [post, setPost] = useState({});
 
-  function handleChange(evt) {
-    setCredentials({ ...credentials, [evt.target.name]: evt.target.value });
-    setError("");
-  }
+  const navigate = useNavigate();
 
-  async function handleSubmit(evt) {
-    // Prevent form from being submitted to the server
-    // evt.preventDefault();
-    // try {
-    //   // The promise returned by the signUp service method
-    //   // will resolve to the user object included in the
-    //   // payload of the JSON Web Token (JWT)
-    //   const user = await usersService.logIn(credentials);
-    //   setUser(user);
-    // } catch (err) {
-    //   setError("Log In Failed - Try Again");
-    //   console.log(err);
-    // }
-  }
+  // const post = useSelector((state) =>
+  //   state.posts.find((post) => post._id === id)
+  // );
+  // console.log('IS THE POST READY: ', post)
+
+  useEffect(() => {
+    const getThePost = async () => {
+      const post = await postsService.getPost(id);
+      setPost(post);
+    };
+    getThePost();
+  }, [dispatch, id]);
+
+  const initialPostData = {
+    _id: id,
+    authorId: user._id,
+    author: user.name,
+    body: "",
+    imageUrl: post.imageUrl,
+    videoUrl: post.videoUrl,
+    attachmentUrl: post.attachmentUrl,
+    audioUrl: post.audioUrl,
+    createdAt: post.createdAt,
+    updatedAt: post.updatedAt,
+  };
+
+  const [postData, setPostData] = useState(initialPostData);
+
+  const handleChange = (e) => {
+    setPostData({ ...postData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      // Make a copy of the postData
+      const userPostData = { ...postData };
+
+
+      // Calling post service create post function
+      const post = await postsService.updatePost(userPostData);
+      if (!post) throw new Error("An error occured while creating your post");
+
+      // Add the post to the app's state
+      // dispatch(updatePost(post));
+
+      setPostData(initialPostData);
+
+      navigate("/");
+    } catch (error) {
+      console.log("An error occured when posting to the database", error);
+    }
+  };
 
   return (
-    <div onSubmit={handleSubmit} className='bg-white flex flex-col items-center'>
-      <Form autoComplete='off'>
-        <section className='w-full'>
-          <label>Email</label>
-          <Input
-            type='text'
-            name='email'
-            value={credentials.email}
-            onChange={handleChange}
-            required
-          />
-        </section>
-        <section className='w-full'>
-          <label>Update your message</label>
-          <Textarea
-            type='password'
-            name='password'
-            rows='5'
-            value={credentials.password}
-            onChange={handleChange}
-            required
-          />
-        </section>
-        <Button type='submit'>LOG IN</Button>
-      </Form>
-      <p className='error-message text-red-500 font-bold'>&nbsp;{error}</p>
-    </div>
+    <PostInputContainer onSubmit={handleSubmit}>
+      <InputSection>
+        <Avatar name='avatar' src='' />
+        <Textarea
+          name='body'
+          size={32}
+          rows={5}
+          type='post'
+          value={postData.body}
+          onChange={handleChange}
+          placeHolder={post.body}
+          className='text-white w-[64em]'
+        ></Textarea>
+      </InputSection>
+
+      <hr className='border-b-2' />
+
+      <PostSection>
+        <UploadIcon name='image'>
+          <BsFillImageFill size='42' />
+          Image
+        </UploadIcon>
+
+        <UploadIcon name='video'>
+          <GoVideo size={42} />
+          Video
+        </UploadIcon>
+
+        <UploadIcon name='attachment'>
+          <CgAttachment size={42} />
+          Attachment
+        </UploadIcon>
+
+        <UploadIcon name='audio'>
+          <SiAudiomack size={42} />
+          Audio
+        </UploadIcon>
+
+        <Button type='submit'>Update</Button>
+      </PostSection>
+    </PostInputContainer>
   );
-}
+};
+
+export default PostInput;

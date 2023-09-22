@@ -12,7 +12,21 @@ async function create(req, res) {
   }
 }
 
-// // Get all the Posts
+// Update a post
+async function updatePost(req, res) {
+  const id = req.params.id;
+  console.log("INSIDE EDIT POST", id);
+  try {
+    const post = await Post.findByIdAndUpdate(id, req.body, { new: true });
+    console.log("UPDATED POST: ", post);
+    res.json(post);
+  } catch (error) {
+    console.log("ERROR WHEN UPDATING")
+    res.status(400).json(error);
+  }
+}
+
+// Get all the Posts
 async function getAllPosts(req, res) {
   console.log("INSIDE GET: ", req);
   try {
@@ -25,28 +39,19 @@ async function getAllPosts(req, res) {
 
 // Get a post
 async function getPost(req, res) {
-  console.log("INSIDE GET POSTS", req.id);
+  console.log("INSIDE CONTROLLER API", req.params.id);
+  const id = req.params.id;
 
   try {
-    // const post = await Post.findById({ id });
-    // console.log(post);
-    // res.json(post);
+    const post = await Post.findById(id);
+    console.log("FOUND: ", post);
+    res.json(post);
   } catch (error) {
     res.status(400).json(error);
   }
 }
 
-// // Edit a post
-// async function edit(req, res) {
-//   console.log("INSIDE EDIT POST");
-//   const id = req._id;
-//   try {
-//     const post = await Post.findById({ id });
-//     res.json(post);
-//   } catch (error) {
-//     res.status(400).json(error);
-//   }
-// }
+
 
 // Check the token
 async function checkToken(req, res) {
@@ -59,6 +64,6 @@ module.exports = {
   create,
   getAllPosts,
   getPost,
-  // edit,
+  updatePost,
   checkToken,
 };

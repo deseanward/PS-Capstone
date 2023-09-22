@@ -13,14 +13,13 @@ export function getPosts() {
   return sendRequest(BASE_URL, "GET", null);
 }
 
-// // Edit A Post
-// export function editPost() {
-//   return sendRequest(`${BASE_URL}/edit/:id`, "GET", null);
-// }
+// Update A Post
+export function updatePost(postData) {
+  return sendRequest(`${BASE_URL}/${postData._id}`, "PUT", postData);
+}
 
 // get A Post
 export function getPost(id) {
-  console.log("INSIDE POST API", `${BASE_URL}/${id}`);
   return sendRequest(`${BASE_URL}/${id}`, "GET", null);
 }
 
@@ -45,7 +44,6 @@ async function sendRequest(url, method = "GET", payload = null) {
   }
   // Call to fetch the url
   const res = await fetch(url, options);
-  console.log("POSTS RESPONSE: ", res);
 
   // res.ok will be false if the status code set to 4xx in the controller action
   if (res.ok) return res.json();

@@ -36,7 +36,6 @@ app.use("/api/users", require("./routes/api/users"));
 //Protect the API routes
 // const ensureLoggedIn = require("./config/ensure-loggedin");
 app.use("/api/posts", require("./routes/api/posts"));
-// app.use("/api/posts/:id", require("./routes/api/post"));
 
 // The following "catch all" route (note the *) is necessary
 // to return the index.html on all non-AJAX requests

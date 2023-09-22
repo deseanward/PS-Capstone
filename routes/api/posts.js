@@ -11,17 +11,17 @@ router.get("/check-token", ensureLoggedin, postsCtrl.checkToken);
 
 // POST - intercepted from 'utils/posts/post-api and passes it to the controller
 // The controller makes the actuall call to the database
+
+// Get All Posts
+router.get("/", postsCtrl.getAllPosts);
+
+// Get a post
+router.get("/:id", postsCtrl.getPost);
+
 // Create New Post
 router.post("/", postsCtrl.create);
 
-// Get All Posts
-router.route("/:id").get(postsCtrl.getPost);
-router.get("/", postsCtrl.getAllPosts);
-
-// // Edit a post
-// router.get("/edit/:id", postsCtrl.edit);
-
-// Get a post
-// router.get("/:id", postsCtrl.getPost);
+// Update a post
+router.put("/:id", postsCtrl.updatePost);
 
 module.exports = router;
