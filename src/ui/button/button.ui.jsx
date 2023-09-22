@@ -3,7 +3,7 @@ import { ButtonContainer, StyledButton } from "./button.ui.styles";
 
 const BUTTON_TYPE_CLASSES = {
   delete: "delete",
-  inverted: "inverted",
+  submit: "inverted",
 };
 
 const Button = ({ type, children, ...otherProps }) => {

@@ -28,14 +28,15 @@ export const StyledButton = styled.button`
     &:hover {
       background-color: white;
       color: maroon;
-      /* outline: 1px solid #4285f4; */
     }
   }
 
   &.inverted {
     background-color: white;
     color: black;
+    width: 100%;
     border: 1px solid black;
+    padding: 0.7em;
 
     &:hover {
       background-color: black;

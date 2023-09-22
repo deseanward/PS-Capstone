@@ -14,7 +14,7 @@ export const InputSection = styled.section`
   ${tw`
         w-full
         h-[60%]
-        py-2 
+        py-8 
         flex gap-4 items-center justify-evenly
         
     `}
