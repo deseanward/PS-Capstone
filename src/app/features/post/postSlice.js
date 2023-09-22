@@ -16,8 +16,18 @@ export const postsSlice = createSlice({
 
       console.log("Existing: ", existingPost);
     },
+
+    deletePost: (state, action) => {
+      const existingPost = state.find(
+        (post) => post._id === action.payload._id
+      );
+
+      state.splice(existingPost, 1);
+
+    },
   },
 });
 
-export const { setPosts, getPosts, updatePost } = postsSlice.actions;
+export const { setPosts, getPosts, updatePost, deletePost } =
+  postsSlice.actions;
 export default postsSlice.reducer;

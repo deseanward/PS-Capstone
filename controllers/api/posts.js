@@ -12,20 +12,6 @@ async function create(req, res) {
   }
 }
 
-// Update a post
-async function updatePost(req, res) {
-  const id = req.params.id;
-  console.log("INSIDE EDIT POST", id);
-  try {
-    const post = await Post.findByIdAndUpdate(id, req.body, { new: true });
-    console.log("UPDATED POST: ", post);
-    res.json(post);
-  } catch (error) {
-    console.log("ERROR WHEN UPDATING")
-    res.status(400).json(error);
-  }
-}
-
 // Get all the Posts
 async function getAllPosts(req, res) {
   console.log("INSIDE GET: ", req);
@@ -51,7 +37,32 @@ async function getPost(req, res) {
   }
 }
 
+// Update a post
+async function updatePost(req, res) {
+  const id = req.params.id;
+  console.log("INSIDE EDIT POST", id);
+  try {
+    const post = await Post.findByIdAndUpdate(id, req.body, { new: true });
+    res.json(post);
+  } catch (error) {
+    console.log("ERROR WHEN UPDATING", error);
+    res.status(400).json(error);
+  }
+}
 
+// DELETE a post
+async function deletePost(req, res) {
+  console.log("INSIDE CONTROLLER API", req.params.id);
+  const id = req.params.id;
+
+  try {
+    const post = await Post.findByIdAndDelete(id, null, { new: true });
+    console.log("DELEtED: ", post);
+    res.json(post);
+  } catch (error) {
+    res.status(400).json(error);
+  }
+}
 
 // Check the token
 async function checkToken(req, res) {
@@ -65,5 +76,6 @@ module.exports = {
   getAllPosts,
   getPost,
   updatePost,
+  deletePost,
   checkToken,
 };

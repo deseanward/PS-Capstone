@@ -1,10 +1,15 @@
 import React from "react";
 import { ButtonContainer, StyledButton } from "./button.ui.styles";
 
-const Button = ({ type, disabled, children }) => {
+const BUTTON_TYPE_CLASSES = {
+  delete: "delete",
+  inverted: "inverted",
+};
+
+const Button = ({ type, children, ...otherProps }) => {
   return (
     <ButtonContainer>
-      <StyledButton type={type} disabled={disabled}>
+      <StyledButton className={`${BUTTON_TYPE_CLASSES[type]}`} {...otherProps}>
         {children}
       </StyledButton>
     </ButtonContainer>

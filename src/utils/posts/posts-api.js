@@ -1,6 +1,6 @@
 import { getToken } from "../users/users-service";
 
-const BASE_URL = "/api/posts"; // Updated URL
+const BASE_URL = "/api/posts";
 
 // Call to the 'post' route from the helper function
 // Caught by the 'routes/api'', then passed to the controller
@@ -8,19 +8,24 @@ export function createPost(postData) {
   return sendRequest(BASE_URL, "POST", postData);
 }
 
-// Get The Posts
+// GET all the Posts
 export function getPosts() {
   return sendRequest(BASE_URL, "GET", null);
 }
 
-// Update A Post
+// GET A Post
+export function getPost(id) {
+  return sendRequest(`${BASE_URL}/${id}`, "GET", null);
+}
+
+// UPDATE/PUT A Post
 export function updatePost(postData) {
   return sendRequest(`${BASE_URL}/${postData._id}`, "PUT", postData);
 }
 
-// get A Post
-export function getPost(id) {
-  return sendRequest(`${BASE_URL}/${id}`, "GET", null);
+// DELETE A Post
+export function deletePost(id) {
+  return sendRequest(`${BASE_URL}/${id}`, "DELETE", null);
 }
 
 // * ---- Helper Functions ---- *//

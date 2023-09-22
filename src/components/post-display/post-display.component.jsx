@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-
-// import { setPosts } from "../../app/features/post/postSlice";
+import { useSelector } from "react-redux";
 
 import * as postsService from "../../utils/posts/posts-service";
 
@@ -10,36 +8,25 @@ import PostItem from "../post-item/post-item.component";
 import { PostDisplayContainer } from "./post-display.styles";
 
 const PostDisplay = () => {
-  const dispatch = useDispatch();
-
-  // const postItems = useSelector((state) => state.posts);
-  // console.log("POST ITEMS: ", postItems);
+  // Monitors state change of newly added posts add triggers a re-render
+  const postItems = useSelector((state) => state.posts);
 
   const [posts, setPosts] = useState([]);
-  // console.log('POSTS ARE READY', posts)
-
-  // console.clear();
-
-  const [postsLoaded, setPostsLoaded] = useState(false);
 
   // Get the posts from the database
   useEffect(() => {
     const fetchPosts = async () => {
-      // if (!postsLoaded) {
-        try {
-          const posts = await postsService.getPosts();
-          if (posts.length) {
-            // dispatch(setPosts(posts));
-            setPosts(posts)
-          }
-          // setPostsLoaded(true);
-        } catch (error) {
-          console.log("Error fetching posts: ", error);
+      try {
+        const posts = await postsService.getPosts();
+        if (posts.length) {
+          setPosts(posts);
         }
-      // }
+      } catch (error) {
+        console.log("Error fetching posts: ", error);
+      }
     };
     fetchPosts();
-  }, []);
+  }, [postItems]);
 
   return (
     <PostDisplayContainer>

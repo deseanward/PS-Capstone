@@ -12,7 +12,7 @@ export const LinkContainer = styled.div`
 export const StyledLink = styled(Link)`
   ${tw`
         
-        bg-gray-300 hover:bg-gray-400 hover:text-white
+        bg-gray-300 hover:bg-gray-400 text-slate-900 hover:text-white
         cursor-pointer
         rounded-md
     `}
