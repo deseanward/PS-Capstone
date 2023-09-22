@@ -1,4 +1,4 @@
-import * as usersApi from "./users-api";
+import * as usersApi from "./users-api.js";
 
 export async function signUp(userData) {
   // Calling the userAPI signUp function
@@ -6,6 +6,8 @@ export async function signUp(userData) {
 
   // Store the token in Local Token (already 'stringified')
   localStorage.setItem("SEIToken", token);
+
+  // Return the current user from the 'getUser' call
   return getUser();
 }
 
@@ -16,6 +18,8 @@ export async function logIn(credentials) {
 
   // Store the token in Local Token (already 'stringified')
   localStorage.setItem("SEIToken", token);
+
+  // Return the current user from the 'getUser' call
   return getUser();
 }
 
@@ -24,6 +28,7 @@ export async function logOut() {
   localStorage.removeItem("SEIToken");
 }
 
+// Validates the token
 export function getToken() {
   // getItem returns null if there's no string
   const token = localStorage.getItem("SEIToken");
@@ -43,10 +48,11 @@ export function getToken() {
 }
 
 export async function checkToken() {
-  const dateStr = await  usersApi.checkToken();
+  const dateStr = await usersApi.checkToken();
   return new Date(dateStr);
 }
 
+// Gets and verifies the current/logged in user from the token
 export function getUser() {
   const token = getToken();
   // If there's a token, return the user in the payload, otherwise return null

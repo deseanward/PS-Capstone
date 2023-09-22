@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const favicon = require("serve-favicon");
 const logger = require("morgan");
+const helmet = require("helmet");
 require("dotenv").config();
 
 // Connect to the database
@@ -16,6 +17,7 @@ const PORT = process.env.PORT || 3001;
 // ----- Configure Middleware ------ //
 app.use(logger("dev"));
 app.use(express.json());
+app.use(helmet());
 
 // Configure both serve-favicon & static middleware
 // to serve from the production 'build' folder
@@ -30,6 +32,11 @@ app.use(express.static(path.join(__dirname, "build")));
 
 // Put API routes here, before the "catch all" route
 app.use("/api/users", require("./routes/api/users"));
+
+//Protect the API routes
+// const ensureLoggedIn = require("./config/ensure-loggedin");
+app.use("/api/posts", require("./routes/api/posts"));
+// app.use("/api/posts/:id", require("./routes/api/post"));
 
 // The following "catch all" route (note the *) is necessary
 // to return the index.html on all non-AJAX requests

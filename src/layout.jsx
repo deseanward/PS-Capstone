@@ -2,7 +2,7 @@ import React from "react";
 
 const DefaultLayout = ({ children }) => {
   return (
-    <div className=' bg-slate-800 w-[85vw] h-full'>
+    <div className='w-[85vw] h-[85vh]'>
       {children}
     </div>
   );

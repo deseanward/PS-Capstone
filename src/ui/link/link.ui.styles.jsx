@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
-export const ButtonContainer = styled.div`
+export const LinkContainer = styled.div`
   ${tw`
         w-full
         flex
@@ -8,7 +9,7 @@ export const ButtonContainer = styled.div`
     `}
 `;
 
-export const StyledButton = styled.button`
+export const StyledLink = styled(Link)`
   ${tw`
         
         bg-gray-300 hover:bg-gray-400 hover:text-white

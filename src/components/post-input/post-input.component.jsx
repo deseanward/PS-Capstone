@@ -1,9 +1,18 @@
 import React, { useState } from "react";
+
+import { useDispatch } from "react-redux";
+
+import { getUser } from "../../utils/users/users-service";
+import * as postsService from "../../utils/posts/posts-service";
+
+import { setPosts } from "../../app/features/post/postSlice";
+
 import {
   InputSection,
   PostSection,
   PostInputContainer,
 } from "./post-input.styles";
+
 import Avatar from "../../ui/avatar/avatar.ui";
 import Input from "../../ui/input/input.ui";
 import UploadIcon from "../../ui/upload-icon/upload-icon.ui";
@@ -14,13 +23,17 @@ import { GoVideo } from "react-icons/go";
 import Button from "../../ui/button/button.ui";
 
 const PostInput = () => {
+  const user = getUser();
+  const dispatch = useDispatch();
+
   const initialPostData = {
-    message: "",
+    body: "",
     imageUrl: "",
     videoUrl: "",
     attachmentUrl: "",
     audioUrl: "",
-    author: '',
+    author: user.name,
+    authorId: user._id,
   };
 
   const [postData, setPostData] = useState(initialPostData);
@@ -29,10 +42,25 @@ const PostInput = () => {
     setPostData({ ...postData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log({postData})
+    try {
+      // Make a copy of the postData
+      const userPostData = { ...postData };
+
+      // Calling post service create post function
+      const post = await postsService.createPost(userPostData);
+
+      if (!post) throw new Error("An error occured while creating your post");
+
+      // Add the post to the app's state
+      dispatch(setPosts(post));
+
+      setPostData(initialPostData);
+    } catch (error) {
+      console.log("An error occured when posting to the database", error);
+    }
   };
 
   return (
@@ -40,10 +68,10 @@ const PostInput = () => {
       <InputSection>
         <Avatar name='avatar' src='' />
         <Input
-          name='message'
+          name='body'
           size={32}
           type='post'
-          value={postData.message}
+          value={postData.body}
           onChange={handleChange}
         />
       </InputSection>

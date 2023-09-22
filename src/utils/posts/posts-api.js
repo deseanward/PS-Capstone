@@ -1,15 +1,27 @@
 import { getToken } from "../users/users-service";
-const BASE_URL = "/api/users";
 
-export function signUp(userData) {
-  return sendRequest(BASE_URL, "POST", userData);
+const BASE_URL = "/api/posts"; // Updated URL
+
+// Call to the 'post' route from the helper function
+// Caught by the 'routes/api'', then passed to the controller
+export function createPost(postData) {
+  return sendRequest(BASE_URL, "POST", postData);
 }
 
-export function logIn(credentials) {
-  return sendRequest(`${BASE_URL}/login`, "POST", credentials);
+// Get The Posts
+export function getPosts() {
+  return sendRequest(BASE_URL, "GET", null);
 }
-export function checkToken() {
-  return sendRequest(`${BASE_URL}/check-token`);
+
+// // Edit A Post
+// export function editPost() {
+//   return sendRequest(`${BASE_URL}/edit/:id`, "GET", null);
+// }
+
+// get A Post
+export function getPost(id) {
+  console.log("INSIDE POST API", `${BASE_URL}/${id}`);
+  return sendRequest(`${BASE_URL}/${id}`, "GET", null);
 }
 
 // * ---- Helper Functions ---- *//
@@ -23,6 +35,7 @@ async function sendRequest(url, method = "GET", payload = null) {
   }
 
   const token = getToken();
+
   if (token) {
     // Ensure the headers object exists
     options.headers = options.headers || {};
@@ -30,9 +43,10 @@ async function sendRequest(url, method = "GET", payload = null) {
     // Prefacing with 'Bearer' is recommended in the HTTP specification
     options.headers.Authorization = `Bearer ${token}`;
   }
-
+  // Call to fetch the url
   const res = await fetch(url, options);
-  console.log("USER RESPONSE: ", res);
+  console.log("POSTS RESPONSE: ", res);
+
   // res.ok will be false if the status code set to 4xx in the controller action
   if (res.ok) return res.json();
   throw new Error("Bad Request");
