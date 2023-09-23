@@ -35,11 +35,18 @@ async function logIn(req, res) {
   }
 }
 
-//* ----- Show User's Home Page ----- *//
-// async function showUserProfile(req, res) {
-//   const currentUser = getUser();
-//   res.status(200).send(`/user/${currentUser._id}`);
-// }
+//* ----- Get the user ----- *//
+async function getUserFromDB(req, res) {
+  const id = req.params.id;
+
+  try {
+    const found = await User.findById(id);
+    res.status(200).json(found);
+  } catch (error) {
+    console.log("An error occurred accessing the database for user", error);
+    res.status(400).json(error);
+  }
+}
 
 // Helper function to create a JWT token
 function createJWT(user) {
@@ -56,7 +63,7 @@ async function checkToken(req, res) {
 module.exports = {
   create,
   logIn,
-  // showUserProfile,
+  getUserFromDB,
   createJWT,
   checkToken,
 };

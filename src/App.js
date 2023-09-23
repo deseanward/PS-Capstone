@@ -10,6 +10,7 @@ import Navbar from "./components/navbar/navbar.component";
 import DefaultLayout from "./layout";
 import UserHomePage from "./pages/User-Home/user-home.page";
 import PostEditPage from "./pages/Post-Edit/post-edit.page";
+import ProfilePage from "./pages/Profile/profile.page";
 
 function App() {
   const [user, setUser] = useState(getUser);
@@ -23,7 +24,7 @@ function App() {
             <Routes>
               <Route path='/' element={<UserHomePage />}></Route>
               <Route path='/posts/:id' element={<PostEditPage />}></Route>
-              <Route path='/orders/new' element={<NewOrderPage />}></Route>
+              <Route path='/profile/:id' element={<ProfilePage />}></Route>
             </Routes>
           </DefaultLayout>
         </>

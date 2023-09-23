@@ -6,7 +6,7 @@ async function create(req, res) {
   console.log("INSIDE CONTROLLER POST");
   try {
     const post = await Post.create(req.body);
-    res.json(post);
+    res.status(200).json(post);
   } catch (error) {
     res.status(400).json(error);
   }
@@ -17,7 +17,7 @@ async function getAllPosts(req, res) {
   console.log("INSIDE GET: ", req);
   try {
     const posts = await Post.find({}).sort({ updatedAt: -1 });
-    res.json(posts);
+    res.status(200).json(posts);
   } catch (error) {
     res.status(400).json(error);
   }
@@ -31,7 +31,7 @@ async function getPost(req, res) {
   try {
     const post = await Post.findById(id);
     console.log("FOUND: ", post);
-    res.json(post);
+    res.status(200).json(post);
   } catch (error) {
     res.status(400).json(error);
   }
@@ -43,7 +43,7 @@ async function updatePost(req, res) {
   console.log("INSIDE EDIT POST", id);
   try {
     const post = await Post.findByIdAndUpdate(id, req.body, { new: true });
-    res.json(post);
+    res.status(200).json(post);
   } catch (error) {
     console.log("ERROR WHEN UPDATING", error);
     res.status(400).json(error);
@@ -58,7 +58,7 @@ async function deletePost(req, res) {
   try {
     const post = await Post.findByIdAndDelete(id, null, { new: true });
     console.log("DELEtED: ", post);
-    res.json(post);
+    res.status(200).json(post);
   } catch (error) {
     res.status(400).json(error);
   }

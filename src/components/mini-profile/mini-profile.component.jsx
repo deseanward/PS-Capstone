@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import * as usersService from "../../utils/users/users-service";
 
@@ -8,25 +8,28 @@ import Avatar from "../../ui/avatar/avatar.ui";
 import { BsFillPersonFill, BsGithub } from "react-icons/bs";
 import { SlLocationPin } from "react-icons/sl";
 import { MdWorkOutline } from "react-icons/md";
-import { AiFillLinkedin } from "react-icons/ai";
+import { AiFillLinkedin, AiFillEdit, AiFillCloseSquare } from "react-icons/ai";
 import { FiExternalLink } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 const MiniProfile = () => {
   const user = usersService.getUser();
 
   return (
     <MiniProfileContainer>
-      <ProfileSection id='Info'>
-        <Avatar />
-        <span className='name'>
-          <h3 className='mb-0 text-2xl'>{user.name}</h3>
-          <span className='text-sm'>2 Friends</span>
-        </span>
+      <Link to={`/profile/${user._id}`}>
+        <ProfileSection id='Info' className='hover:bg-slate-800'>
+          <Avatar />
+          <span className='name'>
+            <h3 className='mb-0 text-2xl'>{user.name}</h3>
+            <span className='text-sm'>2 Friends</span>
+          </span>
 
-        <span className='icon'>
-          <BsFillPersonFill size={28} />
-        </span>
-      </ProfileSection>
+          <span className='icon cursor-pointer'>
+            <AiFillEdit size={28} />
+          </span>
+        </ProfileSection>
+      </Link>
 
       <div className='w-[90%] m-auto opacity-20'>
         <hr />

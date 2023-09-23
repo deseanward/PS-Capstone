@@ -10,7 +10,9 @@ const Textarea = ({
   onChange,
   required,
   placeHolder,
+  ...otherProps
 }) => {
+  const { className } = otherProps;
   return (
     <TextareaContainer type={type}>
       <StyledTextarea
@@ -22,6 +24,7 @@ const Textarea = ({
         onChange={onChange}
         required={required}
         placeholder={placeHolder}
+        className={className}
       />
     </TextareaContainer>
   );

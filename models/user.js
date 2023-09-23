@@ -30,6 +30,21 @@ const userSchema = new Schema(
       type: String,
       required: false,
     },
+
+    friends: {
+      type: Array,
+      required: false,
+    },
+    
+    location: {
+      type: String,
+      required: false,
+    },
+
+    work: {
+      type: String,
+      required: false,
+    }
   },
   {
     timestamps: true,
@@ -51,9 +66,5 @@ userSchema.pre("save", async function (next) {
   this.password = await bcrypt.hash(this.password, SALT_ROUNDS);
   return next();
 });
-
-
-
-
 
 module.exports = mongoose.model("User", userSchema);

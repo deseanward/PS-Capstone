@@ -18,7 +18,12 @@ export const AvatarImage = styled.img`
     `}
 
   &.post {
-    width: 48px;
-    height: 48px;
+    width: 2em;
+    height: 2em;
+  }
+
+  &.profile {
+    width: 16em;
+    height: 16em;
   }
 `;

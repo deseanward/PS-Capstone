@@ -58,3 +58,11 @@ export function getUser() {
   // If there's a token, return the user in the payload, otherwise return null
   return token ? JSON.parse(atob(token.split(".")[1])).user : null;
 }
+
+// Gets an individual user from the database
+export async function getUserFromDB(id) {
+  const user = await usersApi.getUserFromDB(id);
+
+  if (!user) throw new Error("An error occurred, or user not found.");
+  return user;
+}
