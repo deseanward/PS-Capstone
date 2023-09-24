@@ -13,7 +13,6 @@ import {
   PostInputContainer,
 } from "./post-edit.styles";
 
-import Avatar from "../../ui/avatar/avatar.ui";
 import Textarea from "../../ui/textarea/textarea.ui";
 import UploadIcon from "../../ui/upload-icon/upload-icon.ui";
 import { BsFillImageFill } from "react-icons/bs";
@@ -22,6 +21,7 @@ import { CgAttachment } from "react-icons/cg";
 import { GoVideo } from "react-icons/go";
 import Button from "../../ui/button/button.ui";
 import { useNavigate, useParams } from "react-router-dom";
+import UploadWidget from "../upload-widget/upload-widget.component";
 
 const PostInput = () => {
   const user = getUser();
@@ -31,13 +31,9 @@ const PostInput = () => {
 
   const navigate = useNavigate();
 
-  // const post = useSelector((state) =>
-  //   state.posts.find((post) => post._id === id)
-  // );
-  // console.log('IS THE POST READY: ', post)
-
   useEffect(() => {
     const getThePost = async () => {
+      // Fetch the post from the database
       const post = await postsService.getPost(id);
       setPost(post);
     };
@@ -70,7 +66,6 @@ const PostInput = () => {
       // Make a copy of the postData
       const userPostData = { ...postData };
 
-
       // Calling post service create post function
       const post = await postsService.updatePost(userPostData);
       if (!post) throw new Error("An error occured while creating your post");
@@ -89,7 +84,6 @@ const PostInput = () => {
   return (
     <PostInputContainer onSubmit={handleSubmit}>
       <InputSection>
-        <Avatar name='avatar' src='' />
         <Textarea
           name='body'
           size={32}
@@ -98,34 +92,50 @@ const PostInput = () => {
           value={postData.body}
           onChange={handleChange}
           placeHolder={post.body}
-          className='text-white w-[64em]'
+          className='w-[64em] bg-white'
         ></Textarea>
       </InputSection>
 
       <hr className='border-b-2' />
 
       <PostSection>
-        <UploadIcon name='image'>
-          <BsFillImageFill size='42' />
-          Image
-        </UploadIcon>
+        <UploadWidget name='imageUrl'>
+          <UploadIcon name='image'>
+            {postData.imageUrl.length ? (
+              <span className='w-full md:w-12 bg-black'>
+                <img src={postData.imageUrl} alt='' />
+              </span>
+            ) : (
+              <span>
+                <BsFillImageFill size='42' />
+              </span>
+            )}
+            Image
+          </UploadIcon>
+        </UploadWidget>
 
-        <UploadIcon name='video'>
-          <GoVideo size={42} />
-          Video
-        </UploadIcon>
+        <UploadWidget name='videoUrl'>
+          <UploadIcon name='video'>
+            <GoVideo size={42} />
+            Video
+          </UploadIcon>
+        </UploadWidget>
 
-        <UploadIcon name='attachment'>
-          <CgAttachment size={42} />
-          Attachment
-        </UploadIcon>
+        <UploadWidget name='attachmentUrl'>
+          <UploadIcon name='attachment'>
+            <CgAttachment size={42} />
+            Attachment
+          </UploadIcon>
+        </UploadWidget>
 
-        <UploadIcon name='audio'>
-          <SiAudiomack size={42} />
-          Audio
-        </UploadIcon>
+        <UploadWidget name='audioUrl'>
+          <UploadIcon name='audio'>
+            <SiAudiomack size={42} />
+            Audio
+          </UploadIcon>
+        </UploadWidget>
 
-        <Button type='submit'>Update</Button>
+        <Button type='submit'>Post</Button>
       </PostSection>
     </PostInputContainer>
   );

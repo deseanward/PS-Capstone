@@ -3,7 +3,6 @@ const Post = require("../../models/post");
 
 // Create a new Post
 async function create(req, res) {
-  console.log("INSIDE CONTROLLER POST");
   try {
     const post = await Post.create(req.body);
     res.status(200).json(post);
@@ -14,7 +13,6 @@ async function create(req, res) {
 
 // Get all the Posts
 async function getAllPosts(req, res) {
-  console.log("INSIDE GET: ", req);
   try {
     const posts = await Post.find({}).sort({ updatedAt: -1 });
     res.status(200).json(posts);
@@ -25,7 +23,6 @@ async function getAllPosts(req, res) {
 
 // Get a post
 async function getPost(req, res) {
-  console.log("INSIDE CONTROLLER API", req.params.id);
   const id = req.params.id;
 
   try {
@@ -40,7 +37,6 @@ async function getPost(req, res) {
 // Update a post
 async function updatePost(req, res) {
   const id = req.params.id;
-  console.log("INSIDE EDIT POST", id);
   try {
     const post = await Post.findByIdAndUpdate(id, req.body, { new: true });
     res.status(200).json(post);
@@ -52,7 +48,6 @@ async function updatePost(req, res) {
 
 // DELETE a post
 async function deletePost(req, res) {
-  console.log("INSIDE CONTROLLER API", req.params.id);
   const id = req.params.id;
 
   try {

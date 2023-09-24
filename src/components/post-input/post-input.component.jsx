@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { getUser } from "../../utils/users/users-service";
 import * as postsService from "../../utils/posts/posts-service";
@@ -21,6 +21,7 @@ import { SiAudiomack } from "react-icons/si";
 import { CgAttachment } from "react-icons/cg";
 import { GoVideo } from "react-icons/go";
 import Button from "../../ui/button/button.ui";
+import UploadWidget from "../upload-widget/upload-widget.component";
 
 const PostInput = () => {
   const user = getUser();
@@ -38,13 +39,15 @@ const PostInput = () => {
 
   const [postData, setPostData] = useState(initialPostData);
 
+  console.log("Rendered...");
+  const media = useSelector((state) => state.media);
+
   const handleChange = (e) => {
     setPostData({ ...postData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       // Make a copy of the postData
       const userPostData = { ...postData };
@@ -63,10 +66,15 @@ const PostInput = () => {
     }
   };
 
+  useEffect(() => {
+    // Update the postData with uploaded media info
+    setPostData({ ...postData, [media.name]: media.url });
+  }, [media]);
+
   return (
     <PostInputContainer onSubmit={handleSubmit}>
       <InputSection>
-        <Avatar name='avatar' src='' />
+        <Avatar />
         <Input
           name='body'
           size={32}
@@ -79,25 +87,41 @@ const PostInput = () => {
       <hr className='border-b-2' />
 
       <PostSection>
-        <UploadIcon name='image'>
-          <BsFillImageFill size='42' />
-          Image
-        </UploadIcon>
+        <UploadWidget name='imageUrl'>
+          <UploadIcon name='image'>
+            {postData.imageUrl.length ? (
+              <span className='w-full md:w-12 bg-black'>
+                <img src={postData.imageUrl} alt='' />
+              </span>
+            ) : (
+              <span>
+                <BsFillImageFill size='42' />
+              </span>
+            )}
+            Image
+          </UploadIcon>
+        </UploadWidget>
 
-        <UploadIcon name='video'>
-          <GoVideo size={42} />
-          Video
-        </UploadIcon>
+        <UploadWidget name='videoUrl'>
+          <UploadIcon name='video'>
+            <GoVideo size={42} />
+            Video
+          </UploadIcon>
+        </UploadWidget>
 
-        <UploadIcon name='attachment'>
-          <CgAttachment size={42} />
-          Attachment
-        </UploadIcon>
+        <UploadWidget name='attachmentUrl'>
+          <UploadIcon name='attachment'>
+            <CgAttachment size={42} />
+            Attachment
+          </UploadIcon>
+        </UploadWidget>
 
-        <UploadIcon name='audio'>
-          <SiAudiomack size={42} />
-          Audio
-        </UploadIcon>
+        <UploadWidget name='audioUrl'>
+          <UploadIcon name='audio'>
+            <SiAudiomack size={42} />
+            Audio
+          </UploadIcon>
+        </UploadWidget>
 
         <Button type='submit'>Post</Button>
       </PostSection>

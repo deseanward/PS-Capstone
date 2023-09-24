@@ -26,10 +26,7 @@ const ProfilePage = () => {
 
   const [formData, setFormData] = useState(initialFormData);
 
-  //   const handleEditBio = () => {
-  //     setEditBio(!editBio);
-  //   };
-
+  // Handle the content/value changing of fields in profile
   const handleOnChange = (e) => {
     setFormData({
       [e.target.name]: e.target.value,
@@ -47,6 +44,7 @@ const ProfilePage = () => {
   useEffect(() => {
     const getTheUser = async () => {
       try {
+        // Fetch the user profile from the database
         const foundUser = await usersCtrl.getUserFromDB(profile.id);
         setUser(foundUser);
       } catch (error) {

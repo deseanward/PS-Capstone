@@ -36,14 +36,14 @@ const PostItem = ({ post }) => {
   return (
     <PostItemContainer>
       <div className='flex gap-4 justify-between items-center mb-4'>
-        <div className="flex gap-2 items-center">
+        <div className='flex gap-2 items-center'>
           <Avatar className='post' />
-          <div className="pt-2" >
+          <div className='pt-2'>
             <div className=''>{post.author}</div>
             <div className='text-sm mb-4'>
               {moment(post.updatedAt).format("MMMM Do YYYY, h:mm:ss a")}
             </div>
-        </div>
+          </div>
         </div>
         <div className={isAuthor ? "flex gap-4 w-fit" : "hidden"}>
           <Link to={`/posts/${post._id}`}>Edit</Link>
@@ -56,6 +56,9 @@ const PostItem = ({ post }) => {
         </div>
       </div>
       <div className='mb-4'>{post.body}</div>
+      <div id='postImg' className='max-w-[20em] m-auto'>
+        <img src={post.imageUrl} alt='' />
+      </div>
     </PostItemContainer>
   );
 };
