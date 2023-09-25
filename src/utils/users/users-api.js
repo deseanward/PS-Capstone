@@ -9,6 +9,10 @@ export function logIn(credentials) {
   return sendRequest(`${BASE_URL}/login`, "POST", credentials);
 }
 
+export function getAllUsers() {
+  return sendRequest(BASE_URL, "GET", null);
+}
+
 export function getUserFromDB(id) {
   const user = sendRequest(`${BASE_URL}/${id}`, "GET", null);
 
@@ -50,7 +54,6 @@ async function sendRequest(url, method = "GET", payload = null) {
   }
 
   const res = await fetch(url, options);
-  console.log("RESPONSE: ", res);
   // res.ok will be false if the status code set to 4xx in the controller action
   if (res.ok) return res.json();
   throw new Error("Bad Request");

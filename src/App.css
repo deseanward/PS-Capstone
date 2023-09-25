@@ -34,6 +34,6 @@
   h-screen
   overflow-hidden
   flex flex-col items-center gap-8
-  bg-[#323232]
+  bg-slate-950
   
 }

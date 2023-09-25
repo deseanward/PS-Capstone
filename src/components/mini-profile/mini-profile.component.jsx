@@ -5,14 +5,13 @@ import * as usersCtrl from "../../utils/users/users-service";
 import { MiniProfileContainer, ProfileSection } from "./mini-profile.styles";
 import Avatar from "../../ui/avatar/avatar.ui";
 
-import { BsFillPersonFill, BsGithub } from "react-icons/bs";
+import {  BsGithub } from "react-icons/bs";
 import { SlLocationPin } from "react-icons/sl";
 import { MdWorkOutline } from "react-icons/md";
 import { AiFillLinkedin, AiFillEdit } from "react-icons/ai";
 import { FiExternalLink } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-// import { useSelector } from "react-redux";
+
 
 const MiniProfile = () => {
   const user = usersCtrl.getUser();

@@ -58,11 +58,8 @@ const PostInput = () => {
 
   const [postData, setPostData] = useState(initialPostData);
 
-  console.log("POST DATA", postData);
-
   // Grab the media currently saved in the state
   const media = useSelector((state) => state.media);
-  let persistor = persistStore(store);
 
   const handleChange = (e) => {
     setPostData({ ...postData, [e.target.name]: e.target.value });
@@ -91,13 +88,12 @@ const PostInput = () => {
   // Set the inital image url if currently exists
   useEffect(() => {
     setPostData({ ...postData, imageUrl: post.imageUrl });
-  }, [postData]);
+  }, [post]);
 
   useEffect(() => {
     // Update the postData with uploaded media info
     if (media.name && media.url)
       setPostData({ ...postData, [media.name]: media.url });
-    else setPostData({ ...postData, [postData.imageUrl]: post.imageUrl });
   }, [media]);
 
   return (
@@ -107,11 +103,11 @@ const PostInput = () => {
           name='body'
           size={32}
           rows={5}
-          type='post'
-          value={post.body}
+          type='edit'
+          value={postData.body}
           onChange={handleChange}
           placeHolder={post.body}
-          className='w-[64em] bg-white'
+          className='edit w-[64em] bg-white'
         ></Textarea>
       </InputSection>
 

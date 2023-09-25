@@ -5,7 +5,7 @@ export const InputContainer = styled.div`
     h-fit
     flex items-center
     border-2 border-gray-300
-    bg-gray-300 hover:bg-gray-700
+    bg-slate-800 hover:bg-gray-700
     overflow-hidden
     
  `}
@@ -32,6 +32,7 @@ export const SearchIconContainer = styled.section`
     hover:text-white
     self-center justify-self-center
     px-4
+    
    
   `}
   display: ${(props) => (props.type === "search" ? "flex" : "none")};

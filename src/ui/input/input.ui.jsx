@@ -21,7 +21,7 @@ const Input = ({ type, name, size, value, onChange, required }) => {
         p = "Search...";
         break;
       case "post":
-        p = "What's on your mind?";
+        p = "Holla @me...";
         break;
       default:
         p = "";

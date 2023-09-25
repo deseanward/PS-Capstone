@@ -5,6 +5,8 @@ export const MiniProfileContainer = styled.div`
         w-full
         bg-slate-900
         text-white
+        shadow-xl shadow-gray-700
+        rounded-lg
     `}
 `;
 
@@ -12,6 +14,7 @@ export const ProfileSection = styled.section`
   ${tw`
         flex justify-between items-center
         p-4
+        rounded-lg
 
     `}
 
@@ -22,11 +25,7 @@ export const ProfileSection = styled.section`
             mr-auto
             ml-4
         `}
-    }
-
-
-
-
+  }
 
   hr {
     opacity: 0.2;

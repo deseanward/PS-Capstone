@@ -5,9 +5,9 @@ export const PostDisplayContainer = styled.div`
         w-full
         h-full
         flex flex-col gap-4 items-center
-        bg-white
+        
         rounded-lg
         overflow-auto
-        pb-32
+        pb-32 p-4
     `}
 `;

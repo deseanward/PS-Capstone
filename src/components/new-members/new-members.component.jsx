@@ -1,92 +1,60 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import * as usersService from "../../utils/users/users-service";
 
-import {  NewMembersContainer, ProfileSection } from "./new-members.styles";
+import { NewMembersContainer, ProfileSection } from "./new-members.styles";
 import Avatar from "../../ui/avatar/avatar.ui";
 
-import { BsFillPersonFill, BsGithub } from "react-icons/bs";
-import { SlLocationPin } from "react-icons/sl";
-import { MdWorkOutline } from "react-icons/md";
-import { AiFillLinkedin, AiFillEdit } from "react-icons/ai";
-import { FiExternalLink } from "react-icons/fi";
+import { BsFillPersonPlusFill } from "react-icons/bs";
+// import { SlLocationPin } from "react-icons/sl";
+// import { MdWorkOutline } from "react-icons/md";
+// import { AiFillLinkedin, AiFillEdit } from "react-icons/ai";
+// import { FiExternalLink } from "react-icons/fi";
 import { Link } from "react-router-dom";
 // import { useSelector } from "react-redux";
 
 const NewMembers = () => {
-  const user = usersService.getUser();
-  // const user = useSelector((state) => state.auth);
-  console.log("USER IN MINI PROFILE: ", user);
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const getTheUsers = async () => {
+      const allUsers = await usersService.getAllUsers();
+      setUsers(allUsers);
+      // const user = useSelector((state) => state.auth);
+      console.log("USER IN NEW MEMBERS: ", allUsers);
+    };
+
+    getTheUsers();
+  }, []);
 
   return (
     <NewMembersContainer>
-      <Link to={`/profile/${user._id}`}>
-        <ProfileSection id='Info' className='hover:bg-slate-800'>
-          <Avatar id={user._id} />
-          <span className='name'>
-            <h3 className='mb-0 text-2xl'>{user.name}</h3>
-            <span className='text-sm'>2 Friends</span>
-          </span>
+      <h3 className='pl-4 pt-2 text-xl'>Latest Members</h3>
+      {users ? (
+        users.map((user) => (
+          <div key={user._id}>
+            <ProfileSection id='Info' className='hover:bg-slate-800'>
+              <Link className='flex gap-2' to={`/profile/${user._id}`}>
+                <Avatar id={user._id} />
+                <span className='name'>
+                  <h3 className='mb-0 text-2xl'>{user.name}</h3>
+                  <span className='text-sm'>2 Friends</span>
+                </span>
+              </Link>
 
-          <span className='icon cursor-pointer'>
-            <AiFillEdit size={28} />
-          </span>
-        </ProfileSection>
-      </Link>
+              <span className='icon cursor-pointer'>
+                <BsFillPersonPlusFill size={28} />
+              </span>
+            </ProfileSection>
 
-      <div className='w-[90%] m-auto opacity-20'>
-        <hr />
-      </div>
-
-      <ProfileSection id='location' className='flex flex-col gap-2'>
-        <span className='w-full flex items-center gap-2'>
-          <SlLocationPin size={28} />
-          <span className='mb-0 text-gray-400'>Somewhere in America, USA</span>
-        </span>
-
-        <span className='w-full flex items-center gap-2'>
-          <MdWorkOutline size={28} />
-          <span className='mb-0 text-gray-400'>I Build Stuff @Per Scholas</span>
-        </span>
-      </ProfileSection>
-
-      <div className='w-[90%] m-auto opacity-20'>
-        <hr />
-      </div>
-
-      <ProfileSection id='location' className='flex flex-col gap-2'>
-        <span className='w-full flex items-center justify-between'>
-          <span>Who's view your profile</span>
-          <span className='mb-0 text-gray-400'>6725</span>
-        </span>
-
-        <span className='w-full flex items-center justify-between'>
-          <span>Your number of posts</span>
-          <span className='mb-0 text-gray-400'>124</span>
-        </span>
-      </ProfileSection>
-
-      <div className='w-[90%] m-auto opacity-20'>
-        <hr />
-      </div>
-
-      <ProfileSection className='flex flex-col gap-2'>
-        <h3 className='text-2xl self-start'>Social Hub</h3>
-
-        <span className='w-full flex items-center justify-between'>
-          <AiFillLinkedin size={28} className='mr-2' />
-          <span className='mr-auto'>LinkedIn</span>
-          <FiExternalLink size={14} />
-        </span>
-
-        <span className='w-full flex items-center justify-between'>
-          <BsGithub size={28} className='mr-2' />
-          <span className='mr-auto'>Github</span>
-          <FiExternalLink size={14} />
-        </span>
-
-        <span className='icon'></span>
-      </ProfileSection>
+            <div className='w-[90%] m-auto opacity-20'>
+              <hr />
+            </div>
+          </div>
+        ))
+      ) : (
+        <h2>No New Members</h2>
+      )}
     </NewMembersContainer>
   );
 };

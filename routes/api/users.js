@@ -9,6 +9,9 @@ router.get("/check-token", usersCtrl.checkToken);
 // Insert ensureLoggedIn on all routes
 router.get("/check-token", ensureLoggedIn, usersCtrl.checkToken);
 
+// GET all users
+router.get("/", usersCtrl.getAllUsers);
+
 // GET user from DB
 router.get("/:id", usersCtrl.getUserFromDB);
 

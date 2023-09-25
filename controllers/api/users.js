@@ -36,6 +36,18 @@ async function logIn(req, res) {
   }
 }
 
+//* ----- Get all users ----- *//
+async function getAllUsers(req, res) {
+
+  try {
+    const users = await User.find({}).sort({ updatedAt: -1 });
+    res.status(200).json(users);
+  } catch (error) {
+    console.log("An error occurred accessing the database for users", error);
+    res.status(400).json(error);
+  }
+}
+
 //* ----- Get the user ----- *//
 async function getUserFromDB(req, res) {
   const id = req.params.id;
@@ -99,6 +111,7 @@ async function checkToken(req, res) {
 module.exports = {
   create,
   logIn,
+  getAllUsers,
   getUserFromDB,
   updateUser,
   deleteUser,

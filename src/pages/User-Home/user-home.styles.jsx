@@ -21,7 +21,7 @@ export const UserHomeMainSection = styled.main`
 export const UserHomeAsideSection = styled.aside`
   ${tw`
         w-full
-        
+        flex flex-col gap-36
         bg-white
         rounded-lg
         p-4

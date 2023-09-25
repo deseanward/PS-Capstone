@@ -5,8 +5,9 @@ export const PostItemContainer = styled.section`
     w-full
     h-fit
     flex flex-col
-    border-2 rounded-lg
-    bg-slate-800
+    border-[0.05em] border-gray-400 
+    rounded-lg
+    bg-slate-900
     text-white text-2xl
     p-4
  `}

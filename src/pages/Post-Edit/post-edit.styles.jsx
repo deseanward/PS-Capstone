@@ -1,8 +1,8 @@
-import tw, { styled } from 'twin.macro'
+import tw, { styled } from "twin.macro";
 
 export const PostEditPageContainer = styled.main`
-    ${tw`
+  ${tw`
         w-full
         h-full
     `}
-`
+`;

@@ -3,7 +3,8 @@ import tw, { styled } from "twin.macro";
 
 export const NavbarContainer = styled.nav`
   ${tw`
-   bg-white
+   bg-slate-800
+   text-white
   `}
 `;
 
@@ -17,5 +18,5 @@ export const NavbarContent = styled.section`
 
 export const StyledLink = styled(Link)`
   text-decoration: none;
-  color: black;
+  
 `;

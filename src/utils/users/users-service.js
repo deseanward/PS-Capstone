@@ -34,6 +34,12 @@ export async function updateUser(userData) {
   return user;
 }
 
+// Get all users
+export async function getAllUsers() {
+  const users = await usersApi.getAllUsers();
+  return users;
+}
+
 // Gets an individual user from the database
 export async function getUserFromDB(id) {
   const user = await usersApi.getUserFromDB(id);

@@ -66,7 +66,7 @@ const PostItem = ({ post }) => {
         <hr />
       </div>
 
-      <div className='mb-4'>{post.body}</div>
+      <div className='mb-4 '>{post.body}</div>
       <div id='postImg' className='max-w-[20em] m-auto mb-4'>
         <img src={post.imageUrl} className='rounded-lg' alt='' />
       </div>

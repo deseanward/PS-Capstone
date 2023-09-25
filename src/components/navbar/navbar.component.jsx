@@ -21,12 +21,14 @@ const Navbar = ({ setUser }) => {
     <NavbarContainer>
       <NavbarContent>
         <div className='flex gap-4 items-center'>
-          <h2>Welcome, {user.name}</h2>
+          <StyledLink to='/'>
+            <h2>Holla!</h2>
+          </StyledLink>
           <Input size={32} type='search' />
         </div>
-        <div>
-          <StyledLink to='/orders'>Order History</StyledLink> | {""}
-          <StyledLink to='/orders/new'>New History</StyledLink> | {""}
+
+        <div className='flex gap-4'>
+          <h3>Welcome, {user.name}!</h3>| {""}
           <StyledLink to='' onClick={handleLogout}>
             Log Out
           </StyledLink>

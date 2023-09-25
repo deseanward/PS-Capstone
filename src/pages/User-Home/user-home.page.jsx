@@ -8,6 +8,7 @@ import {
 import PostInput from "../../components/post-input/post-input.component";
 import PostDisplay from "../../components/post-display/post-display.component";
 import MiniProfile from "../../components/mini-profile/mini-profile.component";
+import NewMembers from "../../components/new-members/new-members.component";
 
 const UserHomePage = () => {
   // const [post, setPost] = useState([]);
@@ -20,7 +21,9 @@ const UserHomePage = () => {
         <PostInput />
         <PostDisplay />
       </UserHomeMainSection>
-      <UserHomeAsideSection className='right'>Right</UserHomeAsideSection>
+      <UserHomeAsideSection className='right'>
+        <NewMembers />
+      </UserHomeAsideSection>
     </UserHomeContainer>
   );
 };

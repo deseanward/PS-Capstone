@@ -3,9 +3,11 @@ import tw, { styled } from "twin.macro";
 export const ProfilePageContainer = styled.main`
   ${tw`
         flex flex-col
-        w-full h-full 
+        w-[50em] 
         bg-white
         p-8
+        m-auto 
+        rounded-2xl
     `}
 `;
 

@@ -12,6 +12,15 @@ export const TextareaContainer = styled.div`
 
   width: ${(props) => props.size}em;
   border-radius: ${(props) => (props.type === "post" ? "4em" : "0.25em")};
+
+  .edit {
+    ${tw`
+      w-[50em]
+      border-none
+      outline-none
+      bg-white
+    `}
+  }
 `;
 
 export const StyledTextarea = styled.textarea`
@@ -19,10 +28,11 @@ export const StyledTextarea = styled.textarea`
     h-full
     w-full
     p-2 px-4
-    outline-none
+    
     transition
     resize-none
  `}
   font-size: ${(props) => (props.type === "post" ? "2rem" : "1rem")};
-  background-color: ${(props) => (props.type === "post" ? "lightgray" : "")};
+  background-color: ${(props) =>
+    props.type === "post" ? "lightgray" : "white"};
 `;

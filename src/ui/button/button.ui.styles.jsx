@@ -18,8 +18,8 @@ export const StyledButton = styled.button`
         px-4 py-2
     `}
 
-  /* width: ${(props) => (props.type === "submit" ? "100%" : "fit-content")};
-  padding: ${(props) => (props.type === "submit" ? "0.75em" : "0.25em 0.5em")}; */
+  /* width: ${(props) => (props.type === "submit" ? "100%" : "fit-content")}; */
+  /* padding: ${(props) => (props.type === "submit" ? "0.75em" : "0.25em 0.5em")}; */
 
   &.delete {
     background-color: maroon;
@@ -48,5 +48,11 @@ export const StyledButton = styled.button`
       background-color: black;
       color: white;
     }
+  }
+
+  &.submit {
+    ${tw`
+      p-4
+    `}
   }
 `;

@@ -5,7 +5,10 @@ export const PostInputContainer = styled.form`
         w-full
         h-[200px]
         rounded-lg 
-        bg-white
+        border-[0.05em] border-gray-400
+        
+        bg-slate-900
+        
         px-4
         `}
 `;

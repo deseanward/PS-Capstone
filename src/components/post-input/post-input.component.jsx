@@ -94,7 +94,9 @@ const PostInput = () => {
         />
       </InputSection>
 
-      <hr className='border-b-2' />
+      <div className='w-[90%] m-auto opacity-20'>
+        <hr />
+      </div>
 
       <PostSection onClick={() => setSelecting(true)}>
         <UploadWidget name='imageUrl'>
@@ -133,7 +135,7 @@ const PostInput = () => {
           </UploadIcon>
         </UploadWidget>
 
-        <Button type='submit'>Post</Button>
+        <Button className='submit'>Post</Button>
       </PostSection>
     </PostInputContainer>
   );

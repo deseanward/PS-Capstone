@@ -93,12 +93,15 @@ const ProfilePage = () => {
       if (user) {
         console.log("DELETED USER: ", user);
         dispatch(deleteUser(user));
-        usersCtrl.logOut();
-        dispatch(setAuth({}));
+
+        navigate("/");
+        // persistor.purge(["authSlice"]);
       } else console.log("USER WAS NOT DELETED");
     } catch (error) {
       console.log("An error occurred when deleting the post", error);
     }
+    usersCtrl.logOut();
+    dispatch(setAuth({}));
   };
 
   const handleConfirm = () => {
@@ -124,7 +127,7 @@ const ProfilePage = () => {
     // Update the formData with uploaded media info
     setFormData({ ...formData, [media.name]: media.url });
     user.avatar = media.url;
-  }, [media]);
+  }, []);
 
   return (
     <ProfilePageContainer>
@@ -136,7 +139,7 @@ const ProfilePage = () => {
               type='edit'
               className='flex flex-col items-center gap-2 cursor-pointer'
             >
-              <Avatar id={profile.id} className='profile' />
+              <Avatar type='edit' id={profile.id} className='profile' />
               <h3>Change Photo</h3>
             </UploadWidget>
           ) : (
