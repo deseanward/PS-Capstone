@@ -15,6 +15,17 @@ export function getUserFromDB(id) {
   return user;
 }
 
+export function updateUser(userData) {
+  const user = sendRequest(`${BASE_URL}/${userData._id}`, "PATCH", userData);
+  return user;
+}
+
+export function deleteUser(id) {
+  const user = sendRequest(`${BASE_URL}/${id}`, "DELETE", null);
+  console.log("USER API GOT USER", user);
+  return user;
+}
+
 export function checkToken() {
   return sendRequest(`${BASE_URL}/check-token`);
 }
@@ -39,6 +50,7 @@ async function sendRequest(url, method = "GET", payload = null) {
   }
 
   const res = await fetch(url, options);
+  console.log("RESPONSE: ", res);
   // res.ok will be false if the status code set to 4xx in the controller action
   if (res.ok) return res.json();
   throw new Error("Bad Request");

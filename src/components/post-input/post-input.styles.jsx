@@ -25,6 +25,6 @@ export const PostSection = styled.section`
         w-full
         h-[40%]
         p-2
-        flex gap-2 items-center
+        flex gap-2 items-center justify-center
     `}
 `;

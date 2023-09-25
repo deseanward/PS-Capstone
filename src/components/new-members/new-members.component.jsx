@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
-import * as usersCtrl from "../../utils/users/users-service";
+import * as usersService from "../../utils/users/users-service";
 
-import { MiniProfileContainer, ProfileSection } from "./mini-profile.styles";
+import {  NewMembersContainer, ProfileSection } from "./new-members.styles";
 import Avatar from "../../ui/avatar/avatar.ui";
 
 import { BsFillPersonFill, BsGithub } from "react-icons/bs";
@@ -11,17 +11,15 @@ import { MdWorkOutline } from "react-icons/md";
 import { AiFillLinkedin, AiFillEdit } from "react-icons/ai";
 import { FiExternalLink } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 // import { useSelector } from "react-redux";
 
-const MiniProfile = () => {
-  const user = usersCtrl.getUser();
-
+const NewMembers = () => {
+  const user = usersService.getUser();
   // const user = useSelector((state) => state.auth);
   console.log("USER IN MINI PROFILE: ", user);
 
   return (
-    <MiniProfileContainer>
+    <NewMembersContainer>
       <Link to={`/profile/${user._id}`}>
         <ProfileSection id='Info' className='hover:bg-slate-800'>
           <Avatar id={user._id} />
@@ -89,8 +87,8 @@ const MiniProfile = () => {
 
         <span className='icon'></span>
       </ProfileSection>
-    </MiniProfileContainer>
+    </NewMembersContainer>
   );
 };
 
-export default MiniProfile;
+export default NewMembers;

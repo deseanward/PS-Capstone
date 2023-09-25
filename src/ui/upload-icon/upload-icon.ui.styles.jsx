@@ -7,7 +7,7 @@ export const UploadIconContainer = styled.div`
         hover:bg-gray-300
         cursor-pointer
         rounded-lg
-        px-4
+        py-2 px-4
     `}
 `;
 

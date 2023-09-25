@@ -30,12 +30,12 @@ const PostDisplay = () => {
 
   return (
     <PostDisplayContainer>
-      {posts && posts.length ? (
+      {posts.length ? (
         posts.map((post, idx) => {
           return <PostItem key={idx} post={post} />;
         })
       ) : (
-        <h3>No posts to display.</h3>
+        <h2>No posts to display.</h2>
       )}
     </PostDisplayContainer>
   );

@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 
+import { persistStore } from "redux-persist";
+import store from "../../app/store/store";
+
 import { useDispatch, useSelector } from "react-redux";
 
 import { getUser } from "../../utils/users/users-service";
@@ -44,7 +47,7 @@ const PostInput = () => {
     _id: id,
     authorId: user._id,
     author: user.name,
-    body: "",
+    body: post.body,
     imageUrl: post.imageUrl,
     videoUrl: post.videoUrl,
     attachmentUrl: post.attachmentUrl,
@@ -54,6 +57,12 @@ const PostInput = () => {
   };
 
   const [postData, setPostData] = useState(initialPostData);
+
+  console.log("POST DATA", postData);
+
+  // Grab the media currently saved in the state
+  const media = useSelector((state) => state.media);
+  let persistor = persistStore(store);
 
   const handleChange = (e) => {
     setPostData({ ...postData, [e.target.name]: e.target.value });
@@ -72,14 +81,24 @@ const PostInput = () => {
 
       // Add the post to the app's state
       // dispatch(updatePost(post));
-
       setPostData(initialPostData);
-
       navigate("/");
     } catch (error) {
       console.log("An error occured when posting to the database", error);
     }
   };
+
+  // Set the inital image url if currently exists
+  useEffect(() => {
+    setPostData({ ...postData, imageUrl: post.imageUrl });
+  }, [postData]);
+
+  useEffect(() => {
+    // Update the postData with uploaded media info
+    if (media.name && media.url)
+      setPostData({ ...postData, [media.name]: media.url });
+    else setPostData({ ...postData, [postData.imageUrl]: post.imageUrl });
+  }, [media]);
 
   return (
     <PostInputContainer onSubmit={handleSubmit}>
@@ -89,7 +108,7 @@ const PostInput = () => {
           size={32}
           rows={5}
           type='post'
-          value={postData.body}
+          value={post.body}
           onChange={handleChange}
           placeHolder={post.body}
           className='w-[64em] bg-white'
@@ -101,7 +120,7 @@ const PostInput = () => {
       <PostSection>
         <UploadWidget name='imageUrl'>
           <UploadIcon name='image'>
-            {postData.imageUrl.length ? (
+            {postData.imageUrl ? (
               <span className='w-full md:w-12 bg-black'>
                 <img src={postData.imageUrl} alt='' />
               </span>

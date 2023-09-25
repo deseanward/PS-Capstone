@@ -3,7 +3,7 @@ import SignUpForm from "../../components/signup-form/signup-form.component";
 import LoginForm from "../../components/signin-form/signin-form.component";
 import { AuthPageContainer } from "./auth.styles";
 
-const AuthPage = ({ setUser }) => {
+const AuthPage = () => {
   const [showLogin, setShowLogin] = useState(true);
 
   return (
@@ -20,9 +20,9 @@ const AuthPage = ({ setUser }) => {
 
       <section className='self-start lg:self-center'>
         {showLogin ? (
-          <LoginForm setUser={setUser} />
+          <LoginForm />
         ) : (
-          <SignUpForm setUser={setUser} />
+          <SignUpForm />
         )}
       </section>
     </AuthPageContainer>

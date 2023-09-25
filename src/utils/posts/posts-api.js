@@ -49,6 +49,7 @@ async function sendRequest(url, method = "GET", payload = null) {
   }
   // Call to fetch the url
   const res = await fetch(url, options);
+  console.log("POST RESPONSE: ", res);
 
   // res.ok will be false if the status code set to 4xx in the controller action
   if (res.ok) return res.json();

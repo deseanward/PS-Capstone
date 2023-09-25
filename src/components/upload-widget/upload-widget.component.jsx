@@ -3,10 +3,12 @@ import { useDispatch } from "react-redux";
 
 import { setMedia } from "../../app/features/media/mediaSlice";
 
-const UploadWidget = ({ children, name }) => {
+const UploadWidget = ({ children, name, ...otherProps }) => {
   const cloudinaryRef = useRef();
   const widgetRef = useRef();
   const dispatch = useDispatch();
+
+  const { className } = otherProps;
 
   useEffect(() => {
     cloudinaryRef.current = window.cloudinary;
@@ -32,7 +34,7 @@ const UploadWidget = ({ children, name }) => {
   }, [dispatch, name]);
 
   return (
-    <div className='h-full w-full' onClick={() => widgetRef.current.open()}>
+    <div className={className} onClick={() => widgetRef.current.open()}>
       {children}
     </div>
   );

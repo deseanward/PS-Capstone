@@ -2,7 +2,7 @@ import tw, { styled } from "twin.macro";
 
 export const UserHomeContainer = styled.div`
   ${tw`
-        
+       
     `}
 
   display: grid;
@@ -21,7 +21,7 @@ export const UserHomeMainSection = styled.main`
 export const UserHomeAsideSection = styled.aside`
   ${tw`
         w-full
-        h-screen
+        
         bg-white
         rounded-lg
         p-4

@@ -1,16 +1,21 @@
 import { useState } from "react";
 import * as usersService from "../../utils/users/users-service";
 
+import { setAuth } from "../../app/features/auth/authSlice";
+
 import Input from "../../ui/input/input.ui";
 import Button from "../../ui/button/button.ui";
 import Form from "../../ui/form/form.ui";
+import { useDispatch } from "react-redux";
 
-export default function LoginForm({ setUser }) {
+export default function LoginForm() {
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
   });
   const [error, setError] = useState("");
+
+  const dispatch = useDispatch();
 
   function handleChange(evt) {
     setCredentials({ ...credentials, [evt.target.name]: evt.target.value });
@@ -25,7 +30,7 @@ export default function LoginForm({ setUser }) {
       // will resolve to the user object included in the
       // payload of the JSON Web Token (JWT)
       const user = await usersService.logIn(credentials);
-      setUser(user);
+      dispatch(setAuth(user));
     } catch (err) {
       setError("Log In Failed - Try Again");
       console.log(err);

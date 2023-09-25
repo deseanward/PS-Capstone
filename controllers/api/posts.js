@@ -52,7 +52,7 @@ async function deletePost(req, res) {
 
   try {
     const post = await Post.findByIdAndDelete(id, null, { new: true });
-    console.log("DELEtED: ", post);
+    console.log("DELETED: ", post);
     res.status(200).json(post);
   } catch (error) {
     res.status(400).json(error);

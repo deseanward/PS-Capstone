@@ -28,6 +28,29 @@ export async function logOut() {
   localStorage.removeItem("SEIToken");
 }
 
+// Update user
+export async function updateUser(userData) {
+  const user = await usersApi.updateUser(userData);
+  return user;
+}
+
+// Gets an individual user from the database
+export async function getUserFromDB(id) {
+  const user = await usersApi.getUserFromDB(id);
+
+  if (!user) throw new Error("An error occurred, or user not found.");
+  return user;
+}
+
+// Gets an individual user from the database
+export async function deleteUser(id) {
+  const user = await usersApi.deleteUser(id);
+
+  if (!user) throw new Error("An error occurred, or user not found.");
+  if (user) console.log("USER SERVICE GOT USER", user);
+  return user;
+}
+
 // Validates the token
 export function getToken() {
   // getItem returns null if there's no string
@@ -57,12 +80,4 @@ export function getUser() {
   const token = getToken();
   // If there's a token, return the user in the payload, otherwise return null
   return token ? JSON.parse(atob(token.split(".")[1])).user : null;
-}
-
-// Gets an individual user from the database
-export async function getUserFromDB(id) {
-  const user = await usersApi.getUserFromDB(id);
-
-  if (!user) throw new Error("An error occurred, or user not found.");
-  return user;
 }

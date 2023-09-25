@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 
+import { persistStore } from "redux-persist";
+import store from "../../app/store/store";
+
 import { useDispatch, useSelector } from "react-redux";
 
 import { getUser } from "../../utils/users/users-service";
 import * as postsService from "../../utils/posts/posts-service";
+import * as usersService from "../../utils/users/users-service";
 
 import { setPosts } from "../../app/features/post/postSlice";
 
@@ -25,7 +29,10 @@ import UploadWidget from "../upload-widget/upload-widget.component";
 
 const PostInput = () => {
   const user = getUser();
+  // const user = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  let persistor = persistStore(store);
+  const media = useSelector((state) => state.media);
 
   const initialPostData = {
     body: "",
@@ -38,9 +45,8 @@ const PostInput = () => {
   };
 
   const [postData, setPostData] = useState(initialPostData);
-
-  console.log("Rendered...");
-  const media = useSelector((state) => state.media);
+  const [selecting, setSelecting] = useState(false);
+  // Grab the media currently saved in the state
 
   const handleChange = (e) => {
     setPostData({ ...postData, [e.target.name]: e.target.value });
@@ -48,6 +54,7 @@ const PostInput = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setSelecting(false);
     try {
       // Make a copy of the postData
       const userPostData = { ...postData };
@@ -67,14 +74,17 @@ const PostInput = () => {
   };
 
   useEffect(() => {
-    // Update the postData with uploaded media info
-    setPostData({ ...postData, [media.name]: media.url });
-  }, [media]);
+    //   // Update the postData with uploaded media info
+    if (selecting) {
+      setPostData({ ...postData, [media.name]: media.url });
+    }
+    persistor.purge(["mediaSlice"]);
+  }, [media, selecting]);
 
   return (
     <PostInputContainer onSubmit={handleSubmit}>
       <InputSection>
-        <Avatar />
+        <Avatar id={user._id} />
         <Input
           name='body'
           size={32}
@@ -86,11 +96,11 @@ const PostInput = () => {
 
       <hr className='border-b-2' />
 
-      <PostSection>
+      <PostSection onClick={() => setSelecting(true)}>
         <UploadWidget name='imageUrl'>
           <UploadIcon name='image'>
             {postData.imageUrl.length ? (
-              <span className='w-full md:w-12 bg-black'>
+              <span className='w-full md:w-12'>
                 <img src={postData.imageUrl} alt='' />
               </span>
             ) : (

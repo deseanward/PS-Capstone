@@ -2,7 +2,7 @@ import tw from "twin.macro";
 
 export const ImageUploadContainer = tw.div`
     space-y-4 
-    w-full
+    w-fit
     flex flex-col justify-center items-center
 `;
 

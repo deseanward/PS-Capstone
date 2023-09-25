@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { signUp } from "../../utils/users/users-service";
+import { setAuth } from "../../app/features/auth/authSlice";
 import Form from "../../ui/form/form.ui";
 import Input from "../../ui/input/input.ui";
 import Button from "../../ui/button/button.ui";
+import { useDispatch } from "react-redux";
 
 const SignUpForm = ({ setUser }) => {
   const defaultFormFields = {
@@ -13,6 +15,7 @@ const SignUpForm = ({ setUser }) => {
     error: "",
   };
   const [formData, setFormData] = useState(defaultFormFields);
+  const dispatch = useDispatch();
 
   const isDisabled = formData.password !== formData.confirm;
 
@@ -37,7 +40,7 @@ const SignUpForm = ({ setUser }) => {
 
       // Calling user service sign up function
       const user = await signUp(userFormData);
-      setUser(user);
+      dispatch(setAuth(user));
     } catch (error) {
       console.log(error);
       setFormData({ ...formData, error: "Sign Up Failed - Try Again" });

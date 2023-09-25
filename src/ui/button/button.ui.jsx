@@ -4,6 +4,7 @@ import { ButtonContainer, StyledButton } from "./button.ui.styles";
 const BUTTON_TYPE_CLASSES = {
   delete: "delete",
   submit: "inverted",
+  submit_sm: 'submit-sm'
 };
 
 const Button = ({ type, children, ...otherProps }) => {

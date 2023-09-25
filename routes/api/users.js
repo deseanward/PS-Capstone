@@ -14,6 +14,12 @@ router.get("/:id", usersCtrl.getUserFromDB);
 
 // POST
 router.post("/", usersCtrl.create);
-router.post("/login", usersCtrl.logIn)
+router.post("/login", usersCtrl.logIn);
+
+// PATCH / UPDATE user
+router.patch("/:id", usersCtrl.updateUser);
+
+// DELETE user
+router.delete("/:id", usersCtrl.deleteUser);
 
 module.exports = router;

@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
+import { useDispatch, useSelector } from "react-redux";
+import { setAuth } from "./app/features/auth/authSlice";
+
 import { getUser } from "./utils/users/users-service";
 
 import "./App.css";
@@ -11,15 +14,23 @@ import UserHomePage from "./pages/User-Home/user-home.page";
 import PostEditPage from "./pages/Post-Edit/post-edit.page";
 import ProfilePage from "./pages/Profile/profile.page";
 
-
 function App() {
-  const [user, setUser] = useState(getUser);
-  
+  const loggedIn = getUser();
+  console.log("LOGGED IN: ", loggedIn);
+  const dispatch = useDispatch();
+
+  // Dispatch the current user
+  loggedIn
+    ? dispatch(setAuth(loggedIn))
+    : dispatch(setAuth({ name: null, email: null }));
+
+  const user = useSelector((state) => state.auth);
+
   return (
     <div className='app'>
-      {user ? (
+      {user.name && user.email ? (
         <>
-          <Navbar setUser={setUser} />
+          <Navbar />
           <DefaultLayout>
             <Routes>
               <Route path='/' element={<UserHomePage />}></Route>
@@ -29,7 +40,7 @@ function App() {
           </DefaultLayout>
         </>
       ) : (
-        <AuthPage setUser={setUser} />
+        <AuthPage />
       )}
     </div>
   );

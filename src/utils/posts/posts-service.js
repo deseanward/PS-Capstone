@@ -29,7 +29,7 @@ export async function updatePost(postData) {
   return post;
 }
 
-// Get individual post
+// Delete a post
 export async function deletePost(id) {
   const post = await postsApi.deletePost(id);
   return post;

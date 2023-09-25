@@ -11,11 +11,10 @@ export const ProfilePageContainer = styled.main`
 
 export const ProfileHeaderSection = styled.header`
   ${tw`
-    w-full
-    flex flex-col items-center justify-center gap-4
-    border-2
-        p-4
-    `}
+      w-full
+      flex flex-col items-center justify-center gap-4
+      p-4
+  `}
 `;
 
 export const ProfileSection = styled.section`

@@ -13,7 +13,7 @@ import App from "./App";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 let persistor = persistStore(store);
 
-// persistor.purge(["postSlice"]);
+// persistor.purge(["usersSlice"]);
 
 root.render(
   <React.StrictMode>
