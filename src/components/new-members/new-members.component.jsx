@@ -22,7 +22,6 @@ const NewMembers = () => {
       const allUsers = await usersService.getAllUsers();
       setUsers(allUsers);
       // const user = useSelector((state) => state.auth);
-      console.log("USER IN NEW MEMBERS: ", allUsers);
     };
 
     getTheUsers();

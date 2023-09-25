@@ -17,7 +17,6 @@ const MiniProfile = () => {
   const user = usersCtrl.getUser();
 
   // const user = useSelector((state) => state.auth);
-  console.log("USER IN MINI PROFILE: ", user);
 
   return (
     <MiniProfileContainer>

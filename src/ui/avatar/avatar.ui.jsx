@@ -17,7 +17,6 @@ const Avatar = ({ className, type = "", id }) => {
       try {
         //Get the current User from the database
         const user = await usersCtrl.getUserFromDB(id);
-        console.log("PROFILE USER: ", user);
 
         type === "edit" // If loggedin user and in profile view/edit
           ? user.avatar // If avatar currently exists in database

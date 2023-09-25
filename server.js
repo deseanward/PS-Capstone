@@ -32,7 +32,10 @@ app.use(express.static(path.join(__dirname, "build")));
 app.use(
   express.static("/", {
     setHeaders: function (res) {
-      res.set("Content-Security-Policy", "default-src 'self' 'nonce-ABC123'");
+      res.set(
+        "Content-Security-Policy",
+        "script-src 'self' https://upload-widget.cloudinary.com 'nonce-ABC123'"
+      );
     },
   })
 );
@@ -48,6 +51,14 @@ app.use("/api/posts", require("./routes/api/posts"));
 // to return the index.html on all non-AJAX requests
 app.get("/*", function (req, res) {
   res.sendFile(path.join(__dirname, "build", "index.html"));
+});
+
+// Error handler for CSP violation reports
+app.post("/csp-report", (req, res) => {
+  const report = req.body;
+  // Log or process the CSP violation report
+  console.error("CSP Violation Report:", report);
+  res.status(204).end();
 });
 
 // Listen to the port
