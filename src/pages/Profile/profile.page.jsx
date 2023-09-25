@@ -132,7 +132,8 @@ const ProfilePage = () => {
     // Update the formData with uploaded media info
     setFormData({ ...formData, [media.name]: media.url });
     user.avatar = media.url;
-  }, [media, user]);
+    console.log("PROFILE FORM DATA EFFECT:", formData);
+  }, [media]);
 
   return (
     <ProfilePageContainer>
@@ -192,7 +193,7 @@ const ProfilePage = () => {
         <Button
           className='inverted cancel'
           onClick={() => {
-            persistor.purge(["mediaSlice"]);
+            dispatch(setMedia({ name: null, url: null }));
             navigate("/");
           }}
         >

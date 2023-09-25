@@ -17,12 +17,13 @@ const Avatar = ({ className, type = "", id }) => {
       try {
         //Get the current User from the database
         const user = await usersCtrl.getUserFromDB(id);
+        console.log("PROFILE USER: ", user);
 
         type === "edit" // If loggedin user and in profile view/edit
-          ? updatedPhoto.url // If avatar currently exists in database
-            ? setSrc(updatedPhoto.url)
-            : user.avatar
+          ? user.avatar // If avatar currently exists in database
             ? setSrc(user.avatar)
+            : updatedPhoto.url
+            ? setSrc(updatedPhoto.url)
             : setSrc(placeholder)
           : user.avatar // If not loggedin, but viewing a user's profile and  if avatar exists
           ? setSrc(user.avatar)
@@ -30,11 +31,11 @@ const Avatar = ({ className, type = "", id }) => {
       } catch (error) {
         console.log("AN ERROR OCCURED: ", error);
       }
-      console.log("SRC", src);
     };
 
     getAvatarImage();
-  }, [updatedPhoto, id, type, src]);
+  }, [updatedPhoto, id, type]);
+  console.log("SRC", src);
   return (
     <AvatarContainer>
       <AvatarImage className={className} src={src} />
