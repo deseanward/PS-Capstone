@@ -1,10 +1,11 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { setMedia } from "../../app/features/media/mediaSlice";
 
 const UploadWidget = ({ children, name, ...otherProps }) => {
   const dispatch = useDispatch();
+  const [loaded, setLoaded] = useState(false);
 
   const { className } = otherProps;
 
@@ -27,7 +28,19 @@ const UploadWidget = ({ children, name, ...otherProps }) => {
       if (error) console.log(error);
     }
   );
-  // }, [dispatch, name]);
+
+  useEffect(() => {
+    const cldScript = document.getElementById("cloudinaryUploadWidgetScript");
+    // if window is defined and script is not loaded and not in window add script
+    if (typeof window !== "undefined" && !loaded && !cldScript) {
+      const script = document.createElement("script");
+      script.setAttribute("async", "");
+      script.setAttribute("id", "cloudinaryUploadWidgetScript");
+      script.src = "https://upload-widget.cloudinary.com/global/all.js";
+      script.addEventListener("load", () => setLoaded(true));
+      document.body.appendChild(script);
+    }
+  }, [loaded]);
 
   return (
     <div className={className} onClick={() => widgetRef.open()}>
