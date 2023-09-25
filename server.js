@@ -32,7 +32,7 @@ app.use(express.static(path.join(__dirname, "build")));
 app.use(
   express.static("/", {
     setHeaders: function (res) {
-      res.set("Content-Security-Policy", "default-src 'self'");
+      res.set("Content-Security-Policy", "default-src 'self' 'nonce-ABC123'");
     },
   })
 );
