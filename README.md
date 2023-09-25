@@ -1,8 +1,6 @@
 <br/>
 <p align="center">
-  <a href="https://github.com/deseanward/PS-Capstone">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
+
 
   <h3 align="center">Holla!</h3>
 
@@ -30,7 +28,7 @@
 ![Screen Shot](https://github.com/deseanward/PS-Capstone/assets/139034534/87791355-4f0a-4597-aaae-6c5ead24f6c7
 )
 
-Holla! is a stack social media application develop utilizing the MERN stack. 
+Holla! is a social media application developed utilizing the MERN stack. 
 
 The application is my capstone project @Per Scholas, in which to showcase my knowledge and understanding of developing modern, scalable web solutions.
 The project is smiliar to sites such as Facebook and LinkedIn, where users can create accounts, leave messages and post photos.
