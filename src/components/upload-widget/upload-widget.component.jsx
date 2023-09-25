@@ -19,7 +19,7 @@ const UploadWidget = ({ children, name, ...otherProps }) => {
         dispatch(
           setMedia({
             name: name,
-            url: JSON.stringify(result.info.secure_url),
+            url: result.info.secure_url,
           })
         );
       }
@@ -27,6 +27,7 @@ const UploadWidget = ({ children, name, ...otherProps }) => {
       if (error) console.log(error);
     }
   );
+  // }, [dispatch, name]);
 
   return (
     <div className={className} onClick={() => widgetRef.open()}>

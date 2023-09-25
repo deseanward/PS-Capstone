@@ -29,6 +29,13 @@ app.use(require("./config/check-token"));
 
 // Define the 'catch all'
 app.use(express.static(path.join(__dirname, "build")));
+app.use(
+  express.static("/", {
+    setHeaders: function (res) {
+      res.set("Content-Security-Policy", "default-src 'self'");
+    },
+  })
+);
 
 // Put API routes here, before the "catch all" route
 app.use("/api/users", require("./routes/api/users"));
