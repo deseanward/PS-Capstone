@@ -1,4 +1,4 @@
-import tw, { styled } from 'twin.macro'
+import tw, { styled } from "twin.macro";
 
 export const FormContainer = styled.div`
   ${tw`
@@ -19,7 +19,7 @@ export const StyledForm = styled.form`
         rounded-xl
         flex flex-col items-center
         gap-4
-        shadow-lg shadow-black
+        shadow-2xl shadow-black
         p-8 
        
     `}

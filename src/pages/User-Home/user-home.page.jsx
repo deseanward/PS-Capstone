@@ -9,6 +9,7 @@ import PostInput from "../../components/post-input/post-input.component";
 import PostDisplay from "../../components/post-display/post-display.component";
 import MiniProfile from "../../components/mini-profile/mini-profile.component";
 import NewMembers from "../../components/new-members/new-members.component";
+import MyFriends from "../../components/my-friends/my-friends.component";
 
 const UserHomePage = () => {
   // const [post, setPost] = useState([]);
@@ -23,6 +24,7 @@ const UserHomePage = () => {
       </UserHomeMainSection>
       <UserHomeAsideSection className='right'>
         <NewMembers />
+        <MyFriends />
       </UserHomeAsideSection>
     </UserHomeContainer>
   );

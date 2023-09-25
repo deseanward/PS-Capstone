@@ -8,8 +8,8 @@ const AuthPage = () => {
 
   return (
     <AuthPageContainer>
-      <section className='flex flex-col items-center lg:mr-8'>
-        <h1>Welcome</h1>
+      <section className='flex flex-col items-center lg:mr-8 text-slate-900'>
+        <h1>Holla!</h1>
         <button
           className='mb-2 hover:text-gray-500'
           onClick={() => setShowLogin(!showLogin)}

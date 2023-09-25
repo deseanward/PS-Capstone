@@ -22,6 +22,8 @@ import Button from "../../ui/button/button.ui";
 
 import { ConfirmPopover } from "../../components/popover/popover.component";
 import { setAuth } from "../../app/features/auth/authSlice";
+import { setMedia } from "../../app/features/media/mediaSlice";
+import { BsFillPersonPlusFill } from "react-icons/bs";
 
 const ProfilePage = () => {
   let persistor = persistStore(store);
@@ -71,16 +73,18 @@ const ProfilePage = () => {
     try {
       // Make a copy of the postData
       const userFormData = { ...formData };
+      console.log("USER DATA", userFormData);
 
       // Calling post service create post function
       const post = await usersCtrl.updateUser(userFormData);
+      console.log("USER UPDATED:", post);
       if (!post) throw new Error("An error occured while creating your post");
 
       // Add the post to the app's state
       // dispatch(updatePost(post));
 
       setFormData(initialFormData);
-      persistor.purge(["mediaSlice"]);
+      dispatch(setMedia({ name: null, url: null }));
       navigate("/");
     } catch (error) {
       console.log("An error occured when posting to the database", error);
@@ -94,14 +98,15 @@ const ProfilePage = () => {
         console.log("DELETED USER: ", user);
         dispatch(deleteUser(user));
 
-        navigate("/");
-        // persistor.purge(["authSlice"]);
+        persistor.purge();
       } else console.log("USER WAS NOT DELETED");
     } catch (error) {
       console.log("An error occurred when deleting the post", error);
     }
+    persistor.purge();
     usersCtrl.logOut();
     dispatch(setAuth({}));
+    navigate("/");
   };
 
   const handleConfirm = () => {
@@ -127,7 +132,7 @@ const ProfilePage = () => {
     // Update the formData with uploaded media info
     setFormData({ ...formData, [media.name]: media.url });
     user.avatar = media.url;
-  }, []);
+  }, [media, user]);
 
   return (
     <ProfilePageContainer>
@@ -143,10 +148,13 @@ const ProfilePage = () => {
               <h3>Change Photo</h3>
             </UploadWidget>
           ) : (
-            <Avatar id={profile.id} className='profile' />
+            <div className='flex gap-4'>
+              <Avatar id={profile.id} className='profile' />
+              <BsFillPersonPlusFill size={32} />
+            </div>
           )}
         </div>
-        <h1>{user.name}</h1>
+        <h1>{user.name} </h1>
       </ProfileHeaderSection>
 
       <ProfileSection id='about-me'>

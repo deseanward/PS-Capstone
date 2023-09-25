@@ -19,11 +19,11 @@ const UploadWidget = ({ children, name, ...otherProps }) => {
       },
       function (error, result) {
         if (result.info.secure_url) {
-          console.log("GOT THE MEDIA: ");
+          console.log("GOT THE MEDIA: ", JSON.stringify(result.info.secure_url));
           dispatch(
             setMedia({
               name: name,
-              url: result.info.secure_url,
+              url: JSON.stringify(result.info.secure_url),
             })
           );
         }

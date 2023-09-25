@@ -11,7 +11,7 @@ const Avatar = ({ className, type = "", id }) => {
   const updatedPhoto = useSelector((state) => state.media);
 
   useEffect(() => {
-    if (updatedPhoto) setSrc(updatedPhoto.url);
+    // if (updatedPhoto) setSrc(updatedPhoto.url);
 
     const getAvatarImage = async () => {
       try {
@@ -19,20 +19,22 @@ const Avatar = ({ className, type = "", id }) => {
         const user = await usersCtrl.getUserFromDB(id);
 
         type === "edit" // If loggedin user and in profile view/edit
-          ? user.avatar // If avatar currently exists in database
+          ? updatedPhoto.url // If avatar currently exists in database
+            ? setSrc(updatedPhoto.url)
+            : user.avatar
             ? setSrc(user.avatar)
-            : setSrc(updatedPhoto.url)
+            : setSrc(placeholder)
           : user.avatar // If not loggedin, but viewing a user's profile and  if avatar exists
           ? setSrc(user.avatar)
           : setSrc(placeholder);
       } catch (error) {
         console.log("AN ERROR OCCURED: ", error);
       }
-      console.log('SRC', src)
+      console.log("SRC", src);
     };
 
     getAvatarImage();
-  }, [updatedPhoto, id, type]);
+  }, [updatedPhoto, id, type, src]);
   return (
     <AvatarContainer>
       <AvatarImage className={className} src={src} />

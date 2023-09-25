@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 // import { useSelector } from "react-redux";
 
 const NewMembers = () => {
+  const myProfile = usersService.getUser();
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -26,6 +27,10 @@ const NewMembers = () => {
 
     getTheUsers();
   }, []);
+
+  useEffect(() => {
+    console.log("MY PROFILE", myProfile);
+  }, [myProfile]);
 
   return (
     <NewMembersContainer>
@@ -42,7 +47,10 @@ const NewMembers = () => {
                 </span>
               </Link>
 
-              <span className='icon cursor-pointer'>
+              <span
+                className='icon cursor-pointer'
+                onClick={() => myProfile.friends.push(user._id)}
+              >
                 <BsFillPersonPlusFill size={28} />
               </span>
             </ProfileSection>
