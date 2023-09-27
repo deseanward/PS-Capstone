@@ -1,12 +1,8 @@
 import "../App.css";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-
-import { setMedia } from "../../app/features/media/mediaSlice";
-
 import UploadWidgetSyntax from "./UploadWidgetSyntax";
 
-export default function UploadWidget({ children, name, ...otherProps }) {
+export default function UploadWidget() {
   const [loaded, setLoaded] = useState(false);
   const [cloudName, setCloudName] = useState("");
   const [unsignedPreset, setUnsignedPreset] = useState("");
