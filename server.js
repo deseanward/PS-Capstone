@@ -25,8 +25,9 @@ app.use(
         "'self'",
         "https://upload-widget.cloudinary.com",
         "'nonce-ABC123'",
+        "'unsafe-inline'",
       ],
-      styleSrc: ["'self'"],
+      styleSrc: ["'self'", "'unsafe-inline'"],
       imgSrc: ["'self'", "https://res.cloudinary.com", "'nonce-ABC123'"],
     },
   })
