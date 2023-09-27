@@ -18,6 +18,7 @@
 
 ## Table Of Contents
 
+
 * [About the Project](#about-the-project)
 * [Built With](#built-with)
 * [Authors](#authors)
@@ -25,8 +26,7 @@
 
 ## About The Project
 
-![Screen Shot](https://github.com/deseanward/PS-Capstone/assets/139034534/87791355-4f0a-4597-aaae-6c5ead24f6c7
-)
+![Screen Shot](https://github.com/deseanward/PS-Capstone/assets/139034534/97af0333-6a56-4f2a-ae15-f111c1c1d1b8)
 
 Holla! is a social media application developed utilizing the MERN stack. 
 
