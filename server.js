@@ -17,7 +17,20 @@ const PORT = process.env.PORT || 3001;
 // ----- Configure Middleware ------ //
 app.use(logger("dev"));
 app.use(express.json());
-app.use(helmet());
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: [
+        "'self'",
+        "https://upload-widget.cloudinary.com",
+        "'nonce-ABC123'",
+      ],
+      styleSrc: ["'self'"],
+      imgSrc: ["'self'", "https://res.cloudinary.com", "'nonce-ABC123'"],
+    },
+  })
+);
 
 // Configure both serve-favicon & static middleware
 // to serve from the production 'build' folder
@@ -29,20 +42,6 @@ app.use(require("./config/check-token"));
 
 // Define the 'catch all'
 app.use(express.static(path.join(__dirname, "build")));
-app.use(
-  express.static("/", {
-    setHeaders: function (res) {
-      res.set(
-        "Content-Security-Policy",
-        "script-src 'self' https://upload-widget.cloudinary.com 'nonce-ABC123'"
-      );
-      res.set(
-        "Content-Security-Policy",
-        "img-src 'self' https://res.cloudinary.com/ 'nonce-ABC123'"
-      );
-    },
-  })
-);
 
 // Put API routes here, before the "catch all" route
 app.use("/api/users", require("./routes/api/users"));
