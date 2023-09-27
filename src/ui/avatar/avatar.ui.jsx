@@ -4,6 +4,7 @@ import * as usersCtrl from "../../utils/users/users-service";
 
 import { AvatarContainer, AvatarImage } from "./avatar.ui.styles";
 import { useSelector } from "react-redux";
+import { placeholder } from "@cloudinary/react";
 
 const Avatar = ({ className, type = "", id }) => {
   const placeholder = "/images/avatar-placeholder.jpg";
@@ -17,16 +18,13 @@ const Avatar = ({ className, type = "", id }) => {
       try {
         //Get the current User from the database
         const user = await usersCtrl.getUserFromDB(id);
-
-        type === "edit" // If loggedin user and in profile view/edit
-          ? user.avatar // If avatar currently exists in database
-            ? setSrc(user.avatar)
+        setSrc(
+          user.avatar
+            ? user.avatar
             : updatedPhoto.url
-            ? setSrc(updatedPhoto.url)
-            : setSrc(placeholder)
-          : user.avatar // If not loggedin, but viewing a user's profile and  if avatar exists
-          ? setSrc(user.avatar)
-          : setSrc(placeholder);
+            ? updatedPhoto.url
+            : placeholder
+        );
       } catch (error) {
         console.log("AN ERROR OCCURED: ", error);
       }
@@ -34,7 +32,6 @@ const Avatar = ({ className, type = "", id }) => {
 
     getAvatarImage();
   }, [updatedPhoto, id, type]);
-  console.log("SRC", src);
   return (
     <AvatarContainer>
       <AvatarImage className={className} src={src} />

@@ -16,7 +16,6 @@ import ProfilePage from "./pages/Profile/profile.page";
 
 function App() {
   const loggedIn = getUser();
-  console.log("LOGGED IN: ", loggedIn);
   const dispatch = useDispatch();
 
   // Dispatch the current user
