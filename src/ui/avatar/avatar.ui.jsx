@@ -4,7 +4,6 @@ import * as usersCtrl from "../../utils/users/users-service";
 
 import { AvatarContainer, AvatarImage } from "./avatar.ui.styles";
 import { useSelector } from "react-redux";
-import { placeholder } from "@cloudinary/react";
 
 const Avatar = ({ className, type = "", id }) => {
   const placeholder = "/images/avatar-placeholder.jpg";
@@ -13,7 +12,6 @@ const Avatar = ({ className, type = "", id }) => {
 
   useEffect(() => {
     // if (updatedPhoto) setSrc(updatedPhoto.url);
-
     const getAvatarImage = async () => {
       try {
         //Get the current User from the database

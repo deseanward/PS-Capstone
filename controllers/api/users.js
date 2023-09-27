@@ -38,7 +38,6 @@ async function logIn(req, res) {
 
 //* ----- Get all users ----- *//
 async function getAllUsers(req, res) {
-
   try {
     const users = await User.find({}).sort({ updatedAt: -1 });
     res.status(200).json(users);

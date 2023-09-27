@@ -132,7 +132,7 @@ const ProfilePage = () => {
     // Update the formData with uploaded media info
     setFormData({ ...formData, [media.name]: media.url });
     user.avatar = media.url;
-    console.log("PROFILE FORM DATA EFFECT:", formData);
+    console.log("PROFILE FORM USE EFFECT:", formData);
   }, [media]);
 
   return (

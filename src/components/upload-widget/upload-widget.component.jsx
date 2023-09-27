@@ -9,10 +9,10 @@ const UploadWidget = ({ children, name, ...otherProps }) => {
 
   const { className } = otherProps;
 
-  let widgetRef;
+  const widgetRef = useRef();
 
   const createWidget = () => {
-    widgetRef = window.cloudinary.createUploadWidget(
+    widgetRef.current = window.cloudinary.createUploadWidget(
       {
         cloudName: "dhcvpjhlc",
         uploadPreset: "qs5htrib",
@@ -65,7 +65,7 @@ const UploadWidget = ({ children, name, ...otherProps }) => {
   }, [loaded]);
 
   return (
-    <div className={className} onClick={() => widgetRef.open()}>
+    <div className={className} onClick={() => widgetRef.current.open()}>
       {children}
     </div>
   );

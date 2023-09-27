@@ -57,8 +57,6 @@ export async function deleteUser(id) {
   return user;
 }
 
-
-
 // Validates the token
 export function getToken() {
   // getItem returns null if there's no string
