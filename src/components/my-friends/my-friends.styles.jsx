@@ -3,10 +3,13 @@ import tw, { styled } from "twin.macro";
 export const MyFriendsContainer = styled.div`
   ${tw`
         w-full
+        h-[40vh]
         bg-slate-900
         text-white
         shadow-xl shadow-gray-700
         rounded-lg
+        overflow-auto
+        p-4
     `}
 `;
 

@@ -10,6 +10,9 @@ const AuthPage = () => {
     <AuthPageContainer>
       <section className='flex flex-col items-center lg:mr-8 text-slate-900'>
         <h1>Holla!</h1>
+        <span className='mb-4'>
+          Where The Professionally Like-Minded Mingle
+        </span>
         <button
           className='mb-2 hover:text-gray-500'
           onClick={() => setShowLogin(!showLogin)}
@@ -19,11 +22,7 @@ const AuthPage = () => {
       </section>
 
       <section className='self-start lg:self-center'>
-        {showLogin ? (
-          <LoginForm />
-        ) : (
-          <SignUpForm />
-        )}
+        {showLogin ? <LoginForm /> : <SignUpForm />}
       </section>
     </AuthPageContainer>
   );

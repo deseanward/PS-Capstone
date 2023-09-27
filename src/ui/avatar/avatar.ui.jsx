@@ -17,10 +17,10 @@ const Avatar = ({ className, type = "", id }) => {
         //Get the current User from the database
         const user = await usersCtrl.getUserFromDB(id);
         setSrc(
-          user.avatar
-            ? user.avatar
-            : updatedPhoto.url
+          updatedPhoto.url
             ? updatedPhoto.url
+            : user.avatar
+            ? user.avatar
             : placeholder
         );
       } catch (error) {

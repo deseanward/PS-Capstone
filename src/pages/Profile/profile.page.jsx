@@ -29,7 +29,8 @@ const ProfilePage = () => {
   let persistor = persistStore(store);
   const dispatch = useDispatch();
 
-  const userId = usersCtrl.getUser()._id;
+  const currentUser = usersCtrl.getUser();
+  const userId = currentUser._id;
   const profile = useParams();
 
   const navigate = useNavigate();
@@ -197,14 +198,20 @@ const ProfilePage = () => {
             navigate("/");
           }}
         >
-          Cancel
+          {isEdittable ? "Cancel" : "Back"}
         </Button>
-        <Button className='inverted' onClick={handleSubmit}>
-          Update
-        </Button>
-        <Button className='delete' onClick={handleConfirm}>
-          Delete Profile
-        </Button>
+
+        {isEdittable ? (
+          <Button className='inverted' onClick={handleSubmit}>
+            Update
+          </Button>
+        ) : null}
+
+        {isEdittable || currentUser.name === "De Sean" ? (
+          <Button className='delete' onClick={handleConfirm}>
+            Delete Profile
+          </Button>
+        ) : null}
       </ProfileSection>
       <ConfirmPopover
         show={showConfirm}

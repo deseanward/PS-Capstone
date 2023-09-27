@@ -29,8 +29,8 @@ const MyFriends = () => {
 
   return (
     <MyFriendsContainer>
-      <h3 className='pl-4 pt-2 text-xl'>Holla! @Friends</h3>
-      {friends ? (
+      <h3 className='pb-2 text-xl'>Holla! @Friends</h3>
+      {friends.length ? (
         friends.map((friend) => (
           <div key={friend._id}>
             <ProfileSection id='Info' className='hover:bg-slate-800'>
@@ -53,7 +53,7 @@ const MyFriends = () => {
           </div>
         ))
       ) : (
-        <h2>No Friends Added</h2>
+        <h3>No Friends Added</h3>
       )}
     </MyFriendsContainer>
   );
