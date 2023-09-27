@@ -5,10 +5,10 @@
   <h3 align="center">Holla!</h3>
 
   <p align="center">
-    Where Like-minded Professionals Mingle
+    Where The Professionally Like-Minded Mingle
     <br/>
     <br/>
-    <a href="https://github.com/deseanward/PS-Capstone">View Demo</a>
+    <a href="https://holla-vqnd.onrender.com/">View Demo</a>
     .
     <a href="https://github.com/deseanward/PS-Capstone/issues">Request Feature</a>
   </p>
