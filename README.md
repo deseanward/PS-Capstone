@@ -47,6 +47,15 @@ The application is built upon MongoDB, Express.js, React.js, and Node.js.
 ![styled-components](https://github.com/deseanward/PS-Capstone/assets/139034534/4ab3ef67-00d5-4730-a7b8-7d71ee79aa1c)
 
 
+## Roadmap
+
+In the near future, I plan on implementing 
+<ul>
+<li>Search functionaliy</li>
+<li>Add friends</li>
+<li>Comments</li>
+<li>Likes</li>
+</ul>
 
 ## Authors
 
