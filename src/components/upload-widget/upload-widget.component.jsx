@@ -61,6 +61,7 @@ const UploadWidget = ({ children, name, ...otherProps }) => {
       });
       document.body.appendChild(script);
     }
+    createWidget();
   }, [loaded]);
 
   return (
