@@ -52,7 +52,7 @@ The application is built upon MongoDB, Express.js, React.js, and Node.js.
 In the near future, I plan on implementing 
 <ul>
 <li>Search functionaliy</li>
-<li>Add friends</li>
+<li>Adding friends</li>
 <li>Comments</li>
 <li>Likes</li>
 </ul>
