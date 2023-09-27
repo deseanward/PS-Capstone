@@ -2,13 +2,13 @@
 <p align="center">
 
 
-  <h3 align="center">Holla!</h3>
+  <h1 align="center">Holla!</h3>
 
   <p align="center">
-    Where Like-minded Professionals Mingle
+    Where The Professionally Like-Minded Mingle
     <br/>
     <br/>
-    <a href="https://github.com/deseanward/PS-Capstone">View Demo</a>
+    <a href="https://holla-vqnd.onrender.com/">View Demo</a>
     .
     <a href="https://github.com/deseanward/PS-Capstone/issues">Request Feature</a>
   </p>
@@ -18,6 +18,7 @@
 
 ## Table Of Contents
 
+
 * [About the Project](#about-the-project)
 * [Built With](#built-with)
 * [Authors](#authors)
@@ -25,8 +26,7 @@
 
 ## About The Project
 
-![Screen Shot](https://github.com/deseanward/PS-Capstone/assets/139034534/87791355-4f0a-4597-aaae-6c5ead24f6c7
-)
+![Screen Shot](https://github.com/deseanward/PS-Capstone/assets/139034534/97af0333-6a56-4f2a-ae15-f111c1c1d1b8)
 
 Holla! is a social media application developed utilizing the MERN stack. 
 
@@ -47,6 +47,15 @@ The application is built upon MongoDB, Express.js, React.js, and Node.js.
 ![styled-components](https://github.com/deseanward/PS-Capstone/assets/139034534/4ab3ef67-00d5-4730-a7b8-7d71ee79aa1c)
 
 
+## Roadmap
+
+In the near future, I plan on implementing 
+<ul>
+<li>Search functionaliy</li>
+<li>Adding friends</li>
+<li>Comments</li>
+<li>Likes</li>
+</ul>
 
 ## Authors
 
