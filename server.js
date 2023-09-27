@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
-      defaultSrc: ["'self'"],
+      defaultSrc: ["'self'", "'unsafe-inline'"],
       scriptSrc: [
         "'self'",
         "https://upload-widget.cloudinary.com",
