@@ -36,6 +36,10 @@ app.use(
         "Content-Security-Policy",
         "script-src 'self' https://upload-widget.cloudinary.com 'nonce-ABC123'"
       );
+      res.set(
+        "Content-Security-Policy",
+        "img-src 'self' https://res.cloudinary.com/ 'nonce-ABC123'"
+      );
     },
   })
 );
