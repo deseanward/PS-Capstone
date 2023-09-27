@@ -2,7 +2,7 @@
 <p align="center">
 
 
-  <h3 align="center">Holla!</h3>
+  <h1 align="center">Holla!</h3>
 
   <p align="center">
     Where The Professionally Like-Minded Mingle
