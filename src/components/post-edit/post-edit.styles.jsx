@@ -2,11 +2,10 @@ import tw, { styled } from "twin.macro";
 
 export const PostInputContainer = styled.form`
   ${tw`
-        
-        h-[60vh]
         rounded-lg 
         bg-slate-900
-        px-4
+        border-[0.0625em]
+        py-4 px-8
         `}
 `;
 
@@ -23,8 +22,8 @@ export const InputSection = styled.section`
 export const PostSection = styled.section`
   ${tw`
         w-full
-        h-[40%]
-        p-2
+        h-full
+        p-4
         flex gap-2 items-center justify-center
     `}
 `;

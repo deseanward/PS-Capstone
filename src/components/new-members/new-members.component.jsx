@@ -6,10 +6,6 @@ import { NewMembersContainer, ProfileSection } from "./new-members.styles";
 import Avatar from "../../ui/avatar/avatar.ui";
 
 import { BsFillPersonPlusFill } from "react-icons/bs";
-// import { SlLocationPin } from "react-icons/sl";
-// import { MdWorkOutline } from "react-icons/md";
-// import { AiFillLinkedin, AiFillEdit } from "react-icons/ai";
-// import { FiExternalLink } from "react-icons/fi";
 import { Link } from "react-router-dom";
 // import { useSelector } from "react-redux";
 

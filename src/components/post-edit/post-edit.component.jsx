@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../../utils/users/users-service";
 import * as postsService from "../../utils/posts/posts-service";
 
-import { updatePost } from "../../app/features/post/postSlice";
+import { setMedia } from "../../app/features/media/mediaSlice";
 
 import {
   InputSection,
@@ -76,8 +76,10 @@ const PostInput = () => {
       const post = await postsService.updatePost(userPostData);
       if (!post) throw new Error("An error occured while creating your post");
 
-      // Add the post to the app's state
-      // dispatch(updatePost(post));
+      // Update the media's state
+      dispatch(setMedia({ name: null, url: null }));
+
+      // Initialize the form's data
       setPostData(initialPostData);
       navigate("/");
     } catch (error) {
@@ -97,62 +99,68 @@ const PostInput = () => {
   }, [media]);
 
   return (
-    <PostInputContainer onSubmit={handleSubmit}>
-      <InputSection>
-        <Textarea
-          name='body'
-          size={32}
-          rows={5}
-          type='edit'
-          value={postData.body}
-          onChange={handleChange}
-          placeHolder={post.body}
-          className='edit w-[64em] bg-white'
-        ></Textarea>
-      </InputSection>
-
-      <hr className='border-b-2' />
-
-      <PostSection>
-        <UploadWidget name='imageUrl'>
-          <UploadIcon name='image'>
-            {postData.imageUrl ? (
-              <span className='w-full md:w-12 bg-black'>
-                <img src={postData.imageUrl} alt='' />
-              </span>
-            ) : (
-              <span>
-                <BsFillImageFill size='42' />
-              </span>
-            )}
-            Image
-          </UploadIcon>
-        </UploadWidget>
-
-        <UploadWidget name='videoUrl'>
-          <UploadIcon name='video'>
-            <GoVideo size={42} />
-            Video
-          </UploadIcon>
-        </UploadWidget>
-
-        <UploadWidget name='attachmentUrl'>
-          <UploadIcon name='attachment'>
-            <CgAttachment size={42} />
-            Attachment
-          </UploadIcon>
-        </UploadWidget>
-
-        <UploadWidget name='audioUrl'>
-          <UploadIcon name='audio'>
-            <SiAudiomack size={42} />
-            Audio
-          </UploadIcon>
-        </UploadWidget>
-
-        <Button type='submit'>Post</Button>
-      </PostSection>
-    </PostInputContainer>
+    <div className="h-full w-full relative top-20 left-0 flex items-center justify-center">
+      <PostInputContainer onSubmit={handleSubmit}>
+        <h1 className='text-white p-8'>Update Post</h1>
+        <InputSection>
+          <Textarea
+            name='body'
+            size={32}
+            rows={5}
+            type='edit'
+            value={postData.body}
+            onChange={handleChange}
+            placeHolder={post.body}
+            className='edit w-[64em] bg-white'
+          ></Textarea>
+        </InputSection>
+      
+        <hr className='border-b-[0.0625em] border-white/20 my-4' />
+      
+        <PostSection>
+          <UploadWidget name='imageUrl'>
+            <UploadIcon name='image'>
+              {postData.imageUrl ? (
+                <span className='w-full md:w-12 bg-black'>
+                  <img src={postData.imageUrl} alt='' />
+                </span>
+              ) : (
+                <span>
+                  <BsFillImageFill size='42' />
+                </span>
+              )}
+              Image
+            </UploadIcon>
+          </UploadWidget>
+      
+          <UploadWidget name='videoUrl'>
+            <UploadIcon name='video'>
+              <GoVideo size={42} />
+              Video
+            </UploadIcon>
+          </UploadWidget>
+      
+          <UploadWidget name='attachmentUrl'>
+            <UploadIcon name='attachment'>
+              <CgAttachment size={42} />
+              Attachment
+            </UploadIcon>
+          </UploadWidget>
+      
+          <UploadWidget name='audioUrl'>
+            <UploadIcon name='audio'>
+              <SiAudiomack size={42} />
+              Audio
+            </UploadIcon>
+          </UploadWidget>
+      
+          <Button type='submit'>Update</Button>
+          <Button type='submit' onClick={() => navigate("/")}>
+            Back
+          </Button>
+        </PostSection>
+      </PostInputContainer>
+    </div>
   );
 };
 

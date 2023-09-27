@@ -74,7 +74,7 @@ const PostInput = () => {
   };
 
   useEffect(() => {
-    //   // Update the postData with uploaded media info
+    // Update the postData with uploaded media info
     if (selecting) {
       setPostData({ ...postData, [media.name]: media.url });
     }
