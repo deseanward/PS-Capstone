@@ -20,15 +20,15 @@ app.use(express.json());
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
-      defaultSrc: ["'self'", "'unsafe-inline'"],
+      defaultSrc: ["'self'"],
       scriptSrc: [
         "'self'",
         "https://upload-widget.cloudinary.com",
         "'nonce-ABC123'",
-        "'unsafe-inline'",
       ],
       styleSrc: ["'self'", "'unsafe-inline'"],
       imgSrc: ["'self'", "https://res.cloudinary.com", "'nonce-ABC123'"],
+      frameSrc: ["https://upload-widget.cloudinary.com"],
     },
   })
 );
